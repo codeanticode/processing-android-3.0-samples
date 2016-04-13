@@ -59,7 +59,6 @@ class FontTexture implements PConstants {
   protected int lineHeight;
   protected Texture[] textures = null;
   protected PImage[] images = null;
-  protected int currentTex;
   protected int lastTex;
   protected TextureInfo[] glyphTexinfos;
   protected HashMap<PFont.Glyph, TextureInfo> texinfoMap;
@@ -86,20 +85,17 @@ class FontTexture implements PConstants {
 
 
   protected void initTexture(PGraphicsOpenGL pg, PFont font) {
-    currentTex = -1;
     lastTex = -1;
 
     int spow = PGL.nextPowerOfTwo(font.getSize());
-//    minSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
-//                          PApplet.max(PGL.MIN_FONT_TEX_SIZE, spow));
-//    maxSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
-//                          PApplet.max(PGL.MAX_FONT_TEX_SIZE, 2 * spow));
-    minSize = PGL.MIN_FONT_TEX_SIZE;
-    maxSize = PGL.MAX_FONT_TEX_SIZE;
+    minSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
+            PApplet.max(PGL.MIN_FONT_TEX_SIZE, spow));
+    maxSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
+            PApplet.max(PGL.MAX_FONT_TEX_SIZE, 2 * spow));
 
     if (maxSize < spow) {
       PGraphics.showWarning("The font size is too large to be properly " +
-                            "displayed with OpenGL");
+              "displayed with OpenGL");
     }
 
     addTexture(pg);
@@ -119,10 +115,10 @@ class FontTexture implements PConstants {
     boolean resize;
 
     w = maxSize;
-    if (-1 < currentTex && textures[currentTex].glHeight < maxSize) {
+    if (-1 < lastTex && textures[lastTex].glHeight < maxSize) {
       // The height of the current texture is less than the maximum, this
       // means we can replace it with a larger texture.
-      h = PApplet.min(2 * textures[currentTex].glHeight, maxSize);
+      h = PApplet.min(2 * textures[lastTex].glHeight, maxSize);
       resize = true;
     } else {
       h = minSize;
@@ -134,14 +130,14 @@ class FontTexture implements PConstants {
       // Bilinear sampling ensures that the texture doesn't look pixelated
       // either when it is magnified or minified...
       tex = new Texture(pg, w, h,
-                        new Texture.Parameters(ARGB, Texture.BILINEAR, false));
+              new Texture.Parameters(ARGB, Texture.BILINEAR, false));
     } else {
       // ...however, the effect of bilinear sampling is to add some blurriness
       // to the text in its original size. In 2D, we assume that text will be
       // shown at its original size, so linear sampling is chosen instead (which
       // only affects minimized text).
       tex = new Texture(pg, w, h,
-                        new Texture.Parameters(ARGB, Texture.LINEAR, false));
+              new Texture.Parameters(ARGB, Texture.LINEAR, false));
     }
 
     if (textures == null) {
@@ -149,38 +145,37 @@ class FontTexture implements PConstants {
       textures[0] = tex;
       images = new PImage[1];
       images[0] = pg.wrapTexture(tex);
-      currentTex = 0;
+      lastTex = 0;
     } else if (resize) {
       // Replacing old smaller texture with larger one.
       // But first we must copy the contents of the older
       // texture into the new one. Setting blend mode to
       // REPLACE to preserve color of transparent pixels.
-      Texture tex0 = textures[currentTex];
+      Texture tex0 = textures[lastTex];
 
       tex.pg.pushStyle();
       tex.pg.blendMode(REPLACE);
       tex.put(tex0);
       tex.pg.popStyle();
 
-      textures[currentTex] = tex;
+      textures[lastTex] = tex;
 
-      pg.setCache(images[currentTex], tex);
-      images[currentTex].width = tex.width;
-      images[currentTex].height = tex.height;
+      pg.setCache(images[lastTex], tex);
+      images[lastTex].width = tex.width;
+      images[lastTex].height = tex.height;
     } else {
       // Adding new texture to the list.
-      Texture[] tempTex = textures;
-      textures = new Texture[textures.length + 1];
-      PApplet.arrayCopy(tempTex, textures, tempTex.length);
-      textures[tempTex.length] = tex;
-      currentTex = textures.length - 1;
+      lastTex = textures.length;
+      Texture[] tempTex = new Texture[lastTex + 1];
+      PApplet.arrayCopy(textures, tempTex, textures.length);
+      tempTex[lastTex] = tex;
+      textures = tempTex;
 
-      PImage[] tempImg = images;
-      images = new PImage[textures.length];
-      PApplet.arrayCopy(tempImg, images, tempImg.length);
-      images[tempImg.length] = pg.wrapTexture(tex);
+      PImage[] tempImg = new PImage[textures.length];
+      PApplet.arrayCopy(images, tempImg, images.length);
+      tempImg[lastTex] = pg.wrapTexture(tex);
+      images = tempImg;
     }
-    lastTex = currentTex;
 
     // Make sure that the current texture is bound.
     tex.bind();
@@ -190,7 +185,6 @@ class FontTexture implements PConstants {
 
 
   public void begin() {
-    setTexture(0);
   }
 
 
@@ -201,23 +195,8 @@ class FontTexture implements PConstants {
   }
 
 
-  public void setTexture(int idx) {
-    if (0 <= idx && idx < textures.length) {
-      currentTex = idx;
-    }
-  }
-
-
-  public PImage getTexture(int idx) {
-    if (0 <= idx && idx < images.length) {
-      return images[idx];
-    }
-    return null;
-  }
-
-
-  public PImage getCurrentTexture() {
-    return getTexture(currentTex);
+  public PImage getTexture(TextureInfo info) {
+    return images[info.texIndex];
   }
 
 
@@ -234,7 +213,7 @@ class FontTexture implements PConstants {
     // loop over current glyphs.
     for (int i = 0; i < glyphTexinfos.length; i++) {
       TextureInfo tinfo = glyphTexinfos[i];
-      if (tinfo != null && tinfo.texIndex == currentTex) {
+      if (tinfo != null && tinfo.texIndex == lastTex) {
         tinfo.updateUV();
       }
     }
@@ -267,13 +246,18 @@ class FontTexture implements PConstants {
     if (outdated) {
       for (int i = 0; i < textures.length; i++) {
         textures[i].dispose();
-//        PGraphicsOpenGL.removeTextureObject(textures[i].glName,
-//                                            textures[i].context);
-//        textures[i].glName = 0;
       }
     }
     return outdated;
   }
+
+//  public void draw() {
+//    Texture tex = textures[lastTex];
+//    pgl.drawTexture(tex.glTarget, tex.glName,
+//                    tex.glWidth, tex.glHeight,
+//                    0, 0, tex.glWidth, tex.glHeight);
+//  }
+
 
   // Adds this glyph to the opengl texture in PFont.
   protected void addToTexture(PGraphicsOpenGL pg, int idx, PFont.Glyph glyph) {
@@ -318,16 +302,15 @@ class FontTexture implements PConstants {
     }
 
     // Is there room for this glyph in the current line?
-    if (offsetX + w > textures[currentTex].glWidth) {
+    if (offsetX + w > textures[lastTex].glWidth) {
       // No room, go to the next line:
       offsetX = 0;
       offsetY += lineHeight;
-      lineHeight = 0;
     }
     lineHeight = Math.max(lineHeight, h);
 
     boolean resized = false;
-    if (offsetY + lineHeight > textures[currentTex].glHeight) {
+    if (offsetY + lineHeight > textures[lastTex].glHeight) {
       // We run out of space in the current texture, so we add a new texture:
       resized = addTexture(pg);
       if (resized) {
@@ -343,8 +326,7 @@ class FontTexture implements PConstants {
       }
     }
 
-    TextureInfo tinfo = new TextureInfo(currentTex, offsetX, offsetY,
-                                        w, h, rgba);
+    TextureInfo tinfo = new TextureInfo(lastTex, offsetX, offsetY, w, h, rgba);
     offsetX += w;
 
     if (idx == glyphTexinfos.length) {
@@ -387,6 +369,7 @@ class FontTexture implements PConstants {
     void updateUV() {
       width = textures[texIndex].glWidth;
       height = textures[texIndex].glHeight;
+
       u0 = (float)crop[0] / (float)width;
       u1 = u0 + (float)crop[2] / (float)width;
       v0 = (float)(crop[1] + crop[3]) / (float)height;
@@ -396,7 +379,7 @@ class FontTexture implements PConstants {
 
     void updateTex() {
       textures[texIndex].setNative(pixels, crop[0] - 1, crop[1] + crop[3] - 1,
-                                           crop[2] + 2, -crop[3] + 2);
+              crop[2] + 2, -crop[3] + 2);
     }
   }
 }

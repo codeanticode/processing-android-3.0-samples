@@ -139,32 +139,32 @@ public class PGraphicsOpenGL extends PGraphics {
   // Shaders
 
   static protected URL defColorShaderVertURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/ColorVert.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/ColorVert.glsl");
   static protected URL defTextureShaderVertURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/TexVert.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/TexVert.glsl");
   static protected URL defLightShaderVertURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/LightVert.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/LightVert.glsl");
   static protected URL defTexlightShaderVertURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/TexLightVert.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/TexLightVert.glsl");
   static protected URL defColorShaderFragURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/ColorFrag.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/ColorFrag.glsl");
   static protected URL defTextureShaderFragURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/TexFrag.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/TexFrag.glsl");
   static protected URL defLightShaderFragURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/LightFrag.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/LightFrag.glsl");
   static protected URL defTexlightShaderFragURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/TexLightFrag.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/TexLightFrag.glsl");
 
   static protected URL defLineShaderVertURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/LineVert.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/LineVert.glsl");
   static protected URL defLineShaderFragURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/LineFrag.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/LineFrag.glsl");
   static protected URL defPointShaderVertURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/PointVert.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/PointVert.glsl");
   static protected URL defPointShaderFragURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/PointFrag.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/PointFrag.glsl");
   static protected URL maskShaderFragURL =
-    PGraphicsOpenGL.class.getResource("/assets/shaders/MaskFrag.glsl");
+          PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/MaskFrag.glsl");
 
   protected PShader defColorShader;
   protected PShader defTextureShader;
@@ -206,9 +206,9 @@ public class PGraphicsOpenGL extends PGraphics {
   // so that readers can remove themselves from the Set during
   // iteration if they don't have any ongoing transfers.
   protected static final Set<PGraphicsOpenGL.AsyncPixelReader>
-      ongoingPixelTransfers = new HashSet<>();
+          ongoingPixelTransfers = new HashSet<>();
   protected static final List<PGraphicsOpenGL.AsyncPixelReader>
-      ongoingPixelTransfersIterable = new ArrayList<>();
+          ongoingPixelTransfersIterable = new ArrayList<>();
 
   // ........................................................
 
@@ -446,7 +446,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
   /** Used in quad point tessellation. */
   final static protected float[][] QUAD_POINT_SIGNS =
-    { {-1, +1}, {-1, -1}, {+1, -1}, {+1, +1} };
+          { {-1, +1}, {-1, -1}, {+1, -1}, {+1, +1} };
 
   /** To get data from OpenGL. */
   static protected IntBuffer intBuffer;
@@ -457,64 +457,64 @@ public class PGraphicsOpenGL extends PGraphics {
   // Error strings:
 
   static final String OPENGL_THREAD_ERROR =
-    "Cannot run the OpenGL renderer outside the main thread, change your code" +
-    "\nso the drawing calls are all inside the main thread, " +
-    "\nor use the default renderer instead.";
+          "Cannot run the OpenGL renderer outside the main thread, change your code" +
+                  "\nso the drawing calls are all inside the main thread, " +
+                  "\nor use the default renderer instead.";
   static final String BLEND_DRIVER_ERROR =
-    "blendMode(%1$s) is not supported by this hardware (or driver)";
+          "blendMode(%1$s) is not supported by this hardware (or driver)";
   static final String BLEND_RENDERER_ERROR =
-    "blendMode(%1$s) is not supported by this renderer";
+          "blendMode(%1$s) is not supported by this renderer";
   static final String ALREADY_BEGAN_CONTOUR_ERROR =
-    "Already called beginContour()";
+          "Already called beginContour()";
   static final String NO_BEGIN_CONTOUR_ERROR =
-    "Need to call beginContour() first";
+          "Need to call beginContour() first";
   static final String UNSUPPORTED_SMOOTH_LEVEL_ERROR =
-    "Smooth level %1$s is not available. Using %2$s instead";
+          "Smooth level %1$s is not available. Using %2$s instead";
   static final String UNSUPPORTED_SMOOTH_ERROR =
-    "Smooth is not supported by this hardware (or driver)";
+          "Smooth is not supported by this hardware (or driver)";
   static final String TOO_MANY_SMOOTH_CALLS_ERROR =
-    "The smooth/noSmooth functions are being called too often.\n" +
-    "This results in screen flickering, so they will be disabled\n" +
-    "for the rest of the sketch's execution";
+          "The smooth/noSmooth functions are being called too often.\n" +
+                  "This results in screen flickering, so they will be disabled\n" +
+                  "for the rest of the sketch's execution";
   static final String UNSUPPORTED_SHAPE_FORMAT_ERROR =
-    "Unsupported shape format";
+          "Unsupported shape format";
   static final String MISSING_UV_TEXCOORDS_ERROR =
-    "No uv texture coordinates supplied with vertex() call";
+          "No uv texture coordinates supplied with vertex() call";
   static final String INVALID_FILTER_SHADER_ERROR =
-    "Your shader cannot be used as a filter because is of type POINT or LINES";
+          "Your shader cannot be used as a filter because is of type POINT or LINES";
   static final String INCONSISTENT_SHADER_TYPES =
-    "The vertex and fragment shaders have different types";
+          "The vertex and fragment shaders have different types";
   static final String WRONG_SHADER_TYPE_ERROR =
-    "shader() called with a wrong shader";
+          "shader() called with a wrong shader";
   static final String SHADER_NEED_LIGHT_ATTRIBS =
-    "The provided shader needs light attributes (ambient, diffuse, etc.), but " +
-    "the current scene is unlit, so the default shader will be used instead";
+          "The provided shader needs light attributes (ambient, diffuse, etc.), but " +
+                  "the current scene is unlit, so the default shader will be used instead";
   static final String MISSING_FRAGMENT_SHADER =
-    "The fragment shader is missing, cannot create shader object";
+          "The fragment shader is missing, cannot create shader object";
   static final String MISSING_VERTEX_SHADER =
-    "The vertex shader is missing, cannot create shader object";
+          "The vertex shader is missing, cannot create shader object";
   static final String UNKNOWN_SHADER_KIND_ERROR =
-    "Unknown shader kind";
+          "Unknown shader kind";
   static final String NO_TEXLIGHT_SHADER_ERROR =
-    "Your shader needs to be of TEXLIGHT type " +
-    "to render this geometry properly, using default shader instead.";
+          "Your shader needs to be of TEXLIGHT type " +
+                  "to render this geometry properly, using default shader instead.";
   static final String NO_LIGHT_SHADER_ERROR =
-    "Your shader needs to be of LIGHT type " +
-    "to render this geometry properly, using default shader instead.";
+          "Your shader needs to be of LIGHT type " +
+                  "to render this geometry properly, using default shader instead.";
   static final String NO_TEXTURE_SHADER_ERROR =
-    "Your shader needs to be of TEXTURE type " +
-    "to render this geometry properly, using default shader instead.";
+          "Your shader needs to be of TEXTURE type " +
+                  "to render this geometry properly, using default shader instead.";
   static final String NO_COLOR_SHADER_ERROR =
-    "Your shader needs to be of COLOR type " +
-    "to render this geometry properly, using default shader instead.";
+          "Your shader needs to be of COLOR type " +
+                  "to render this geometry properly, using default shader instead.";
   static final String TESSELLATION_ERROR =
-    "Tessellation Error: %1$s";
+          "Tessellation Error: %1$s";
   static final String GL_THREAD_NOT_CURRENT =
-    "You are trying to draw outside OpenGL's animation thread.\n" +
-    "Place all drawing commands in the draw() function, or inside\n" +
-    "your own functions as long as they are called from draw(),\n" +
-    "but not in event handling functions such as keyPressed()\n" +
-    "or mousePressed().";
+          "You are trying to draw outside OpenGL's animation thread.\n" +
+                  "Place all drawing commands in the draw() function, or inside\n" +
+                  "your own functions as long as they are called from draw(),\n" +
+                  "but not in event handling functions such as keyPressed()\n" +
+                  "or mousePressed().";
 
   //////////////////////////////////////////////////////////////
 
@@ -683,13 +683,14 @@ public class PGraphicsOpenGL extends PGraphics {
   }
 
 
-/*
+  /*
   @Override
   // Java only
   public PSurface createSurface() {  // ignore
     return surface = new PSurfaceJOGL(this);
   }
-*/
+  */
+
 
   public boolean saveImpl(String filename) {
     return super.save(filename); // ASYNC save frame using PBOs not yet available on Android
@@ -873,7 +874,7 @@ public class PGraphicsOpenGL extends PGraphics {
     public boolean equals(Object obj) {
       GLResourceTexture other = (GLResourceTexture)obj;
       return other.glName == glName &&
-             other.context == context;
+              other.context == context;
     }
 
     @Override
@@ -947,7 +948,7 @@ public class PGraphicsOpenGL extends PGraphics {
     public boolean equals(Object obj) {
       GLResourceVertexBuffer other = (GLResourceVertexBuffer)obj;
       return other.glId == glId &&
-             other.context == context;
+              other.context == context;
     }
 
     @Override
@@ -1034,9 +1035,9 @@ public class PGraphicsOpenGL extends PGraphics {
     public boolean equals(Object obj) {
       GLResourceShader other = (GLResourceShader)obj;
       return other.glProgram == glProgram &&
-             other.glVertex == glVertex &&
-             other.glFragment == glFragment &&
-             other.context == context;
+              other.glVertex == glVertex &&
+              other.glFragment == glFragment &&
+              other.context == context;
     }
 
     @Override
@@ -1162,11 +1163,11 @@ public class PGraphicsOpenGL extends PGraphics {
     public boolean equals(Object obj) {
       GLResourceFrameBuffer other = (GLResourceFrameBuffer)obj;
       return other.glFbo == glFbo &&
-             other.glDepth == glDepth &&
-             other.glStencil == glStencil &&
-             other.glDepthStencil == glDepthStencil &&
-             other.glMultisample == glMultisample &&
-             other.context == context;
+              other.glDepth == glDepth &&
+              other.glStencil == glStencil &&
+              other.glDepthStencil == glDepthStencil &&
+              other.glMultisample == glMultisample &&
+              other.context == context;
     }
 
     @Override
@@ -1274,47 +1275,47 @@ public class PGraphicsOpenGL extends PGraphics {
     tessGeo.updatePolyVerticesBuffer();
     pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPolyVertex.glId);
     pgl.bufferData(PGL.ARRAY_BUFFER, 4 * sizef,
-                   tessGeo.polyVerticesBuffer, PGL.STATIC_DRAW);
+            tessGeo.polyVerticesBuffer, PGL.STATIC_DRAW);
 
     tessGeo.updatePolyColorsBuffer();
     pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPolyColor.glId);
     pgl.bufferData(PGL.ARRAY_BUFFER, sizei,
-                   tessGeo.polyColorsBuffer, PGL.STATIC_DRAW);
+            tessGeo.polyColorsBuffer, PGL.STATIC_DRAW);
 
     if (lit) {
       tessGeo.updatePolyAmbientBuffer();
       pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPolyAmbient.glId);
       pgl.bufferData(PGL.ARRAY_BUFFER, sizei,
-                     tessGeo.polyAmbientBuffer, PGL.STATIC_DRAW);
+              tessGeo.polyAmbientBuffer, PGL.STATIC_DRAW);
 
       tessGeo.updatePolySpecularBuffer();
       pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPolySpecular.glId);
       pgl.bufferData(PGL.ARRAY_BUFFER, sizei,
-                     tessGeo.polySpecularBuffer, PGL.STATIC_DRAW);
+              tessGeo.polySpecularBuffer, PGL.STATIC_DRAW);
 
       tessGeo.updatePolyEmissiveBuffer();
       pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPolyEmissive.glId);
       pgl.bufferData(PGL.ARRAY_BUFFER, sizei,
-                     tessGeo.polyEmissiveBuffer, PGL.STATIC_DRAW);
+              tessGeo.polyEmissiveBuffer, PGL.STATIC_DRAW);
 
       tessGeo.updatePolyShininessBuffer();
       pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPolyShininess.glId);
       pgl.bufferData(PGL.ARRAY_BUFFER, sizef,
-                     tessGeo.polyShininessBuffer, PGL.STATIC_DRAW);
+              tessGeo.polyShininessBuffer, PGL.STATIC_DRAW);
     }
 
     if (lit || needNormals) {
       tessGeo.updatePolyNormalsBuffer();
       pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPolyNormal.glId);
       pgl.bufferData(PGL.ARRAY_BUFFER, 3 * sizef,
-                     tessGeo.polyNormalsBuffer, PGL.STATIC_DRAW);
+              tessGeo.polyNormalsBuffer, PGL.STATIC_DRAW);
     }
 
     if (tex || needTexCoords) {
       tessGeo.updatePolyTexCoordsBuffer();
       pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPolyTexcoord.glId);
       pgl.bufferData(PGL.ARRAY_BUFFER, 2 * sizef,
-                     tessGeo.polyTexCoordsBuffer, PGL.STATIC_DRAW);
+              tessGeo.polyTexCoordsBuffer, PGL.STATIC_DRAW);
     }
 
     for (String name: polyAttribs.keySet()) {
@@ -1322,14 +1323,14 @@ public class PGraphicsOpenGL extends PGraphics {
       tessGeo.updateAttribBuffer(name);
       pgl.bindBuffer(PGL.ARRAY_BUFFER, attrib.buf.glId);
       pgl.bufferData(PGL.ARRAY_BUFFER, attrib.sizeInBytes(size),
-                     tessGeo.polyAttribBuffers.get(name), PGL.STATIC_DRAW);
+              tessGeo.polyAttribBuffers.get(name), PGL.STATIC_DRAW);
     }
 
     tessGeo.updatePolyIndicesBuffer();
     pgl.bindBuffer(PGL.ELEMENT_ARRAY_BUFFER, bufPolyIndex.glId);
     pgl.bufferData(PGL.ELEMENT_ARRAY_BUFFER,
-      tessGeo.polyIndexCount * PGL.SIZEOF_INDEX, tessGeo.polyIndicesBuffer,
-      PGL.STATIC_DRAW);
+            tessGeo.polyIndexCount * PGL.SIZEOF_INDEX, tessGeo.polyIndicesBuffer,
+            PGL.STATIC_DRAW);
   }
 
 
@@ -1372,23 +1373,23 @@ public class PGraphicsOpenGL extends PGraphics {
     tessGeo.updateLineVerticesBuffer();
     pgl.bindBuffer(PGL.ARRAY_BUFFER, bufLineVertex.glId);
     pgl.bufferData(PGL.ARRAY_BUFFER, 4 * sizef, tessGeo.lineVerticesBuffer,
-                   PGL.STATIC_DRAW);
+            PGL.STATIC_DRAW);
 
     tessGeo.updateLineColorsBuffer();
     pgl.bindBuffer(PGL.ARRAY_BUFFER, bufLineColor.glId);
     pgl.bufferData(PGL.ARRAY_BUFFER, sizei,
-                   tessGeo.lineColorsBuffer, PGL.STATIC_DRAW);
+            tessGeo.lineColorsBuffer, PGL.STATIC_DRAW);
 
     tessGeo.updateLineDirectionsBuffer();
     pgl.bindBuffer(PGL.ARRAY_BUFFER, bufLineAttrib.glId);
     pgl.bufferData(PGL.ARRAY_BUFFER, 4 * sizef,
-                   tessGeo.lineDirectionsBuffer, PGL.STATIC_DRAW);
+            tessGeo.lineDirectionsBuffer, PGL.STATIC_DRAW);
 
     tessGeo.updateLineIndicesBuffer();
     pgl.bindBuffer(PGL.ELEMENT_ARRAY_BUFFER, bufLineIndex.glId);
     pgl.bufferData(PGL.ELEMENT_ARRAY_BUFFER,
-                   tessGeo.lineIndexCount * PGL.SIZEOF_INDEX,
-                   tessGeo.lineIndicesBuffer, PGL.STATIC_DRAW);
+            tessGeo.lineIndexCount * PGL.SIZEOF_INDEX,
+            tessGeo.lineIndicesBuffer, PGL.STATIC_DRAW);
   }
 
 
@@ -1429,23 +1430,23 @@ public class PGraphicsOpenGL extends PGraphics {
     tessGeo.updatePointVerticesBuffer();
     pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPointVertex.glId);
     pgl.bufferData(PGL.ARRAY_BUFFER, 4 * sizef,
-                   tessGeo.pointVerticesBuffer, PGL.STATIC_DRAW);
+            tessGeo.pointVerticesBuffer, PGL.STATIC_DRAW);
 
     tessGeo.updatePointColorsBuffer();
     pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPointColor.glId);
     pgl.bufferData(PGL.ARRAY_BUFFER, sizei,
-                   tessGeo.pointColorsBuffer, PGL.STATIC_DRAW);
+            tessGeo.pointColorsBuffer, PGL.STATIC_DRAW);
 
     tessGeo.updatePointOffsetsBuffer();
     pgl.bindBuffer(PGL.ARRAY_BUFFER, bufPointAttrib.glId);
     pgl.bufferData(PGL.ARRAY_BUFFER, 2 * sizef,
-                   tessGeo.pointOffsetsBuffer, PGL.STATIC_DRAW);
+            tessGeo.pointOffsetsBuffer, PGL.STATIC_DRAW);
 
     tessGeo.updatePointIndicesBuffer();
     pgl.bindBuffer(PGL.ELEMENT_ARRAY_BUFFER, bufPointIndex.glId);
     pgl.bufferData(PGL.ELEMENT_ARRAY_BUFFER,
-      tessGeo.pointIndexCount * PGL.SIZEOF_INDEX,
-      tessGeo.pointIndicesBuffer, PGL.STATIC_DRAW);
+            tessGeo.pointIndexCount * PGL.SIZEOF_INDEX,
+            tessGeo.pointIndicesBuffer, PGL.STATIC_DRAW);
   }
 
 
@@ -1615,7 +1616,7 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     pgl.viewport(viewport.get(0), viewport.get(1),
-                 viewport.get(2), viewport.get(3));
+            viewport.get(2), viewport.get(3));
     if (clip) {
       pgl.enable(PGL.SCISSOR_TEST);
       pgl.scissor(clipRect[0], clipRect[1], clipRect[2], clipRect[3]);
@@ -1998,7 +1999,7 @@ public class PGraphicsOpenGL extends PGraphics {
     tessellate(mode);
 
     if ((flushMode == FLUSH_CONTINUOUSLY) ||
-        (flushMode == FLUSH_WHEN_FULL && tessGeo.isFull())) {
+            (flushMode == FLUSH_WHEN_FULL && tessGeo.isFull())) {
       flush();
     } else {
       // pixels array is not up-to-date anymore
@@ -2010,13 +2011,13 @@ public class PGraphicsOpenGL extends PGraphics {
   protected void endShape(int[] indices) {
     if (shape != TRIANGLE && shape != TRIANGLES) {
       throw new RuntimeException("Indices and edges can only be set for " +
-                                 "TRIANGLE shapes");
+              "TRIANGLE shapes");
     }
 
     tessellate(indices);
 
     if (flushMode == FLUSH_CONTINUOUSLY ||
-        (flushMode == FLUSH_WHEN_FULL && tessGeo.isFull())) {
+            (flushMode == FLUSH_WHEN_FULL && tessGeo.isFull())) {
       flush();
     } else {
       // pixels array is not up-to-date anymore
@@ -2086,7 +2087,7 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public void attribPosition(String name, float x, float y, float z) {
     VertexAttribute attrib = attribImpl(name, VertexAttribute.POSITION,
-                                        PGL.FLOAT, 3);
+            PGL.FLOAT, 3);
     if (attrib != null) attrib.set(x, y, z);
   }
 
@@ -2094,7 +2095,7 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public void attribNormal(String name, float nx, float ny, float nz) {
     VertexAttribute attrib = attribImpl(name, VertexAttribute.NORMAL,
-                                        PGL.FLOAT, 3);
+            PGL.FLOAT, 3);
     if (attrib != null) attrib.set(nx, ny, nz);
   }
 
@@ -2109,7 +2110,7 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public void attrib(String name, float... values) {
     VertexAttribute attrib = attribImpl(name, VertexAttribute.OTHER,
-                                        PGL.FLOAT, values.length);
+            PGL.FLOAT, values.length);
     if (attrib != null) attrib.set(values);
   }
 
@@ -2117,7 +2118,7 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public void attrib(String name, int... values) {
     VertexAttribute attrib = attribImpl(name, VertexAttribute.OTHER,
-                                        PGL.INT, values.length);
+            PGL.INT, values.length);
     if (attrib != null) attrib.set(values);
   }
 
@@ -2125,7 +2126,7 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public void attrib(String name, boolean... values) {
     VertexAttribute attrib = attribImpl(name, VertexAttribute.OTHER,
-                                        PGL.BOOL, values.length);
+            PGL.BOOL, values.length);
     if (attrib != null) attrib.set(values);
   }
 
@@ -2186,12 +2187,12 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     inGeo.addVertex(x, y, z,
-                    fcolor,
-                    normalX, normalY, normalZ,
-                    u, v,
-                    scolor, sweight,
-                    ambientColor, specularColor, emissiveColor, shininess,
-                    VERTEX, vertexBreak());
+            fcolor,
+            normalX, normalY, normalZ,
+            u, v,
+            scolor, sweight,
+            ambientColor, specularColor, emissiveColor, shininess,
+            VERTEX, vertexBreak());
   }
 
 
@@ -2283,7 +2284,7 @@ public class PGraphicsOpenGL extends PGraphics {
       tessellator.tessellateQuadStrip();
     } else if (shape == POLYGON) {
       tessellator.tessellatePolygon(true, mode == CLOSE,
-                                    normalMode == NORMAL_MODE_AUTO);
+              normalMode == NORMAL_MODE_AUTO);
     }
   }
 
@@ -2310,11 +2311,11 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public void flush() {
     boolean hasPolys = 0 < tessGeo.polyVertexCount &&
-                       0 < tessGeo.polyIndexCount;
+            0 < tessGeo.polyIndexCount;
     boolean hasLines = 0 < tessGeo.lineVertexCount &&
-                       0 < tessGeo.lineIndexCount;
+            0 < tessGeo.lineIndexCount;
     boolean hasPoints = 0 < tessGeo.pointVertexCount &&
-                        0 < tessGeo.pointIndexCount;
+            0 < tessGeo.pointIndexCount;
 
     boolean hasPixels = modified && pixels != null;
 
@@ -2415,35 +2416,35 @@ public class PGraphicsOpenGL extends PGraphics {
       for (int n = first; n <= last; n++) {
         int ioffset = n == first ? texCache.firstIndex[i] : cache.indexOffset[n];
         int icount = n == last ? texCache.lastIndex[i] - ioffset + 1 :
-                                 cache.indexOffset[n] + cache.indexCount[n] - ioffset;
+                cache.indexOffset[n] + cache.indexCount[n] - ioffset;
         int voffset = cache.vertexOffset[n];
 
         shader.setVertexAttribute(bufPolyVertex.glId, 4, PGL.FLOAT, 0,
-                                  4 * voffset * PGL.SIZEOF_FLOAT);
+                4 * voffset * PGL.SIZEOF_FLOAT);
         shader.setColorAttribute(bufPolyColor.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                                 4 * voffset * PGL.SIZEOF_BYTE);
+                4 * voffset * PGL.SIZEOF_BYTE);
 
         if (lights) {
           shader.setNormalAttribute(bufPolyNormal.glId, 3, PGL.FLOAT, 0,
-                                    3 * voffset * PGL.SIZEOF_FLOAT);
+                  3 * voffset * PGL.SIZEOF_FLOAT);
           shader.setAmbientAttribute(bufPolyAmbient.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                                     4 * voffset * PGL.SIZEOF_BYTE);
+                  4 * voffset * PGL.SIZEOF_BYTE);
           shader.setSpecularAttribute(bufPolySpecular.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                                      4 * voffset * PGL.SIZEOF_BYTE);
+                  4 * voffset * PGL.SIZEOF_BYTE);
           shader.setEmissiveAttribute(bufPolyEmissive.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                                      4 * voffset * PGL.SIZEOF_BYTE);
+                  4 * voffset * PGL.SIZEOF_BYTE);
           shader.setShininessAttribute(bufPolyShininess.glId, 1, PGL.FLOAT, 0,
-                                       voffset * PGL.SIZEOF_FLOAT);
+                  voffset * PGL.SIZEOF_FLOAT);
         }
 
         if (lights || needNormals) {
           shader.setNormalAttribute(bufPolyNormal.glId, 3, PGL.FLOAT, 0,
-                                    3 * voffset * PGL.SIZEOF_FLOAT);
+                  3 * voffset * PGL.SIZEOF_FLOAT);
         }
 
         if (tex != null || needTexCoords) {
           shader.setTexcoordAttribute(bufPolyTexcoord.glId, 2, PGL.FLOAT, 0,
-                                      2 * voffset * PGL.SIZEOF_FLOAT);
+                  2 * voffset * PGL.SIZEOF_FLOAT);
           shader.setTexture(tex);
         }
 
@@ -2451,8 +2452,8 @@ public class PGraphicsOpenGL extends PGraphics {
           if (!attrib.active(shader)) continue;
           attrib.bind(pgl);
           shader.setAttributeVBO(attrib.glLoc, attrib.buf.glId,
-                                 attrib.tessSize, attrib.type,
-                                 attrib.isColor(), 0, attrib.sizeInBytes(voffset));
+                  attrib.tessSize, attrib.type,
+                  attrib.isColor(), 0, attrib.sizeInBytes(voffset));
         }
 
         shader.draw(bufPolyIndex.glId, icount, ioffset);
@@ -2492,8 +2493,8 @@ public class PGraphicsOpenGL extends PGraphics {
       do {
         ++ti;
       } while (ti < triangleCount &&
-          texId == texMap[ti] &&
-          voffsetId == voffsetMap[ti]);
+              texId == texMap[ti] &&
+              voffsetId == voffsetMap[ti]);
 
       int endTi = ti;
 
@@ -2510,31 +2511,31 @@ public class PGraphicsOpenGL extends PGraphics {
       shader.bind();
 
       shader.setVertexAttribute(bufPolyVertex.glId, 4, PGL.FLOAT, 0,
-                                4 * voffset * PGL.SIZEOF_FLOAT);
+              4 * voffset * PGL.SIZEOF_FLOAT);
       shader.setColorAttribute(bufPolyColor.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                               4 * voffset * PGL.SIZEOF_BYTE);
+              4 * voffset * PGL.SIZEOF_BYTE);
 
       if (lights) {
         shader.setNormalAttribute(bufPolyNormal.glId, 3, PGL.FLOAT, 0,
-                                  3 * voffset * PGL.SIZEOF_FLOAT);
+                3 * voffset * PGL.SIZEOF_FLOAT);
         shader.setAmbientAttribute(bufPolyAmbient.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                                   4 * voffset * PGL.SIZEOF_BYTE);
+                4 * voffset * PGL.SIZEOF_BYTE);
         shader.setSpecularAttribute(bufPolySpecular.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                                    4 * voffset * PGL.SIZEOF_BYTE);
+                4 * voffset * PGL.SIZEOF_BYTE);
         shader.setEmissiveAttribute(bufPolyEmissive.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                                    4 * voffset * PGL.SIZEOF_BYTE);
+                4 * voffset * PGL.SIZEOF_BYTE);
         shader.setShininessAttribute(bufPolyShininess.glId, 1, PGL.FLOAT, 0,
-                                     voffset * PGL.SIZEOF_FLOAT);
+                voffset * PGL.SIZEOF_FLOAT);
       }
 
       if (lights || needNormals) {
         shader.setNormalAttribute(bufPolyNormal.glId, 3, PGL.FLOAT, 0,
-                                  3 * voffset * PGL.SIZEOF_FLOAT);
+                3 * voffset * PGL.SIZEOF_FLOAT);
       }
 
       if (tex != null || needTexCoords) {
         shader.setTexcoordAttribute(bufPolyTexcoord.glId, 2, PGL.FLOAT, 0,
-                                    2 * voffset * PGL.SIZEOF_FLOAT);
+                2 * voffset * PGL.SIZEOF_FLOAT);
         shader.setTexture(tex);
       }
 
@@ -2542,8 +2543,8 @@ public class PGraphicsOpenGL extends PGraphics {
         if (!attrib.active(shader)) continue;
         attrib.bind(pgl);
         shader.setAttributeVBO(attrib.glLoc, attrib.buf.glId,
-                               attrib.tessSize, attrib.type,
-                               attrib.isColor(), 0, attrib.sizeInBytes(voffset));
+                attrib.tessSize, attrib.type,
+                attrib.isColor(), 0, attrib.sizeInBytes(voffset));
       }
 
       shader.draw(bufPolyIndex.glId, icount, ioffset);
@@ -2575,10 +2576,10 @@ public class PGraphicsOpenGL extends PGraphics {
       IndexCache cache = tessGeo.polyIndexCache;
       for (int n = first; n <= last; n++) {
         int ioffset = n == first ? texCache.firstIndex[i] :
-                                   cache.indexOffset[n];
+                cache.indexOffset[n];
         int icount = n == last ? texCache.lastIndex[i] - ioffset + 1 :
-                                 cache.indexOffset[n] + cache.indexCount[n] -
-                                 ioffset;
+                cache.indexOffset[n] + cache.indexCount[n] -
+                        ioffset;
         int voffset = cache.vertexOffset[n];
 
         for (int tr = ioffset / 3; tr < (ioffset + icount) / 3; tr++) {
@@ -2778,11 +2779,11 @@ public class PGraphicsOpenGL extends PGraphics {
       int voffset = cache.vertexOffset[n];
 
       shader.setVertexAttribute(bufLineVertex.glId, 4, PGL.FLOAT, 0,
-                                4 * voffset * PGL.SIZEOF_FLOAT);
+              4 * voffset * PGL.SIZEOF_FLOAT);
       shader.setColorAttribute(bufLineColor.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                               4 * voffset * PGL.SIZEOF_BYTE);
+              4 * voffset * PGL.SIZEOF_BYTE);
       shader.setLineAttribute(bufLineAttrib.glId, 4, PGL.FLOAT, 0,
-                              4 * voffset * PGL.SIZEOF_FLOAT);
+              4 * voffset * PGL.SIZEOF_FLOAT);
 
       shader.draw(bufLineIndex.glId, icount, ioffset);
     }
@@ -2879,11 +2880,11 @@ public class PGraphicsOpenGL extends PGraphics {
       int voffset = cache.vertexOffset[n];
 
       shader.setVertexAttribute(bufPointVertex.glId, 4, PGL.FLOAT, 0,
-                                4 * voffset * PGL.SIZEOF_FLOAT);
+              4 * voffset * PGL.SIZEOF_FLOAT);
       shader.setColorAttribute(bufPointColor.glId, 4, PGL.UNSIGNED_BYTE, 0,
-                               4 * voffset * PGL.SIZEOF_BYTE);
+              4 * voffset * PGL.SIZEOF_BYTE);
       shader.setPointAttribute(bufPointAttrib.glId, 2, PGL.FLOAT, 0,
-                               2 * voffset * PGL.SIZEOF_FLOAT);
+              2 * voffset * PGL.SIZEOF_FLOAT);
 
       shader.draw(bufPointIndex.glId, icount, ioffset);
     }
@@ -2918,7 +2919,7 @@ public class PGraphicsOpenGL extends PGraphics {
         if (0 < size) { // round point
           weight = +size / 0.5f;
           perim = PApplet.min(MAX_POINT_ACCURACY, PApplet.max(MIN_POINT_ACCURACY,
-                              (int) (TWO_PI * weight / POINT_ACCURACY_FACTOR))) + 1;
+                  (int) (TWO_PI * weight / POINT_ACCURACY_FACTOR))) + 1;
         } else {        // Square point
           weight = -size / 0.5f;
           perim = 5;
@@ -2966,8 +2967,8 @@ public class PGraphicsOpenGL extends PGraphics {
                            float x3, float y3,
                            float x4, float y4) {
     bezierVertexImpl(x2, y2, 0,
-                     x3, y3, 0,
-                     x4, y4, 0);
+            x3, y3, 0,
+            x4, y4, 0);
   }
 
 
@@ -2976,8 +2977,8 @@ public class PGraphicsOpenGL extends PGraphics {
                            float x3, float y3, float z3,
                            float x4, float y4, float z4) {
     bezierVertexImpl(x2, y2, z2,
-                     x3, y3, z3,
-                     x4, y4, z4);
+            x3, y3, z3,
+            x4, y4, z4);
   }
 
 
@@ -2986,11 +2987,11 @@ public class PGraphicsOpenGL extends PGraphics {
                                   float x4, float y4, float z4) {
     bezierVertexCheck(shape, inGeo.vertexCount);
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.setNormal(normalX, normalY, normalZ);
     inGeo.addBezierVertex(x2, y2, z2,
-                          x3, y3, z3,
-                          x4, y4, z4, vertexBreak());
+            x3, y3, z3,
+            x4, y4, z4, vertexBreak());
   }
 
 
@@ -2998,7 +2999,7 @@ public class PGraphicsOpenGL extends PGraphics {
   public void quadraticVertex(float cx, float cy,
                               float x3, float y3) {
     quadraticVertexImpl(cx, cy, 0,
-                        x3, y3, 0);
+            x3, y3, 0);
   }
 
 
@@ -3006,7 +3007,7 @@ public class PGraphicsOpenGL extends PGraphics {
   public void quadraticVertex(float cx, float cy, float cz,
                               float x3, float y3, float z3) {
     quadraticVertexImpl(cx, cy, cz,
-                        x3, y3, z3);
+            x3, y3, z3);
   }
 
 
@@ -3014,10 +3015,10 @@ public class PGraphicsOpenGL extends PGraphics {
                                      float x3, float y3, float z3) {
     bezierVertexCheck(shape, inGeo.vertexCount);
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.setNormal(normalX, normalY, normalZ);
     inGeo.addQuadraticVertex(cx, cy, cz,
-                             x3, y3, z3, vertexBreak());
+            x3, y3, z3, vertexBreak());
   }
 
 
@@ -3041,7 +3042,7 @@ public class PGraphicsOpenGL extends PGraphics {
   protected void curveVertexImpl(float x, float y, float z) {
     curveVertexCheck(shape);
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.setNormal(normalX, normalY, normalZ);
     inGeo.addCurveVertex(x, y, z, vertexBreak());
   }
@@ -3069,7 +3070,7 @@ public class PGraphicsOpenGL extends PGraphics {
     defaultEdges = false;
     normalMode = NORMAL_MODE_SHAPE;
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.setNormal(normalX, normalY, normalZ);
     inGeo.addPoint(x, y, z, fill, stroke);
     endShape();
@@ -3095,11 +3096,11 @@ public class PGraphicsOpenGL extends PGraphics {
     defaultEdges = false;
     normalMode = NORMAL_MODE_SHAPE;
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.setNormal(normalX, normalY, normalZ);
     inGeo.addLine(x1, y1, z1,
-                  x2, y2, z2,
-                  fill, stroke);
+            x2, y2, z2,
+            fill, stroke);
     endShape();
   }
 
@@ -3111,12 +3112,12 @@ public class PGraphicsOpenGL extends PGraphics {
     defaultEdges = false;
     normalMode = NORMAL_MODE_SHAPE;
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.setNormal(normalX, normalY, normalZ);
     inGeo.addTriangle(x1, y1, 0,
-                      x2, y2, 0,
-                      x3, y3, 0,
-                      fill, stroke);
+            x2, y2, 0,
+            x3, y3, 0,
+            fill, stroke);
     endShape();
   }
 
@@ -3128,13 +3129,13 @@ public class PGraphicsOpenGL extends PGraphics {
     defaultEdges = false;
     normalMode = NORMAL_MODE_SHAPE;
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.setNormal(normalX, normalY, normalZ);
     inGeo.addQuad(x1, y1, 0,
-                  x2, y2, 0,
-                  x3, y3, 0,
-                  x4, y4, 0,
-                  stroke);
+            x2, y2, 0,
+            x3, y3, 0,
+            x4, y4, 0,
+            stroke);
     endShape();
   }
 
@@ -3146,7 +3147,7 @@ public class PGraphicsOpenGL extends PGraphics {
     defaultEdges = false;
     normalMode = NORMAL_MODE_SHAPE;
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.setNormal(normalX, normalY, normalZ);
     inGeo.addRect(x1, y1, x2, y2, tl, tr, br, bl, stroke);
     endShape(CLOSE);
@@ -3160,14 +3161,14 @@ public class PGraphicsOpenGL extends PGraphics {
 
   @Override
   public void ellipseImpl(float a, float b, float c, float d) {
-     beginShape(TRIANGLE_FAN);
-     defaultEdges = false;
-     normalMode = NORMAL_MODE_SHAPE;
-     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                       ambientColor, specularColor, emissiveColor, shininess);
-     inGeo.setNormal(normalX, normalY, normalZ);
-     inGeo.addEllipse(a, b, c, d, fill, stroke);
-     endShape();
+    beginShape(TRIANGLE_FAN);
+    defaultEdges = false;
+    normalMode = NORMAL_MODE_SHAPE;
+    inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
+            ambientColor, specularColor, emissiveColor, shininess);
+    inGeo.setNormal(normalX, normalY, normalZ);
+    inGeo.addEllipse(a, b, c, d, fill, stroke);
+    endShape();
   }
 
 
@@ -3178,7 +3179,7 @@ public class PGraphicsOpenGL extends PGraphics {
     defaultEdges = false;
     normalMode = NORMAL_MODE_SHAPE;
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.setNormal(normalX, normalY, normalZ);
     inGeo.addArc(x, y, w, h, start, stop, fill, stroke, mode);
     endShape();
@@ -3197,7 +3198,7 @@ public class PGraphicsOpenGL extends PGraphics {
     defaultEdges = false;
     normalMode = NORMAL_MODE_VERTEX;
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     inGeo.addBox(w, h, d, fill, stroke);
     endShape();
   }
@@ -3220,9 +3221,9 @@ public class PGraphicsOpenGL extends PGraphics {
     defaultEdges = false;
     normalMode = NORMAL_MODE_VERTEX;
     inGeo.setMaterial(fillColor, strokeColor, strokeWeight,
-                      ambientColor, specularColor, emissiveColor, shininess);
+            ambientColor, specularColor, emissiveColor, shininess);
     int[] indices = inGeo.addSphere(r, sphereDetailU, sphereDetailV,
-                                    fill, stroke);
+            fill, stroke);
     endShape(indices);
   }
 
@@ -3382,7 +3383,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
       if (shapeMode == CENTER) {
         translate(x - shape.getWidth() / 2, y - shape.getHeight() / 2,
-                  z - shape.getDepth() / 2);
+                z - shape.getDepth() / 2);
 
       } else if ((shapeMode == CORNER) || (shapeMode == CORNERS)) {
         translate(x, y, z);
@@ -3407,14 +3408,14 @@ public class PGraphicsOpenGL extends PGraphics {
         // x, y and z are center, c, d and e refer to a diameter
         translate(x - c / 2f, y - d / 2f, z - e / 2f);
         scale(c / shape.getWidth(),
-              d / shape.getHeight(),
-              e / shape.getDepth());
+                d / shape.getHeight(),
+                e / shape.getDepth());
 
       } else if (shapeMode == CORNER) {
         translate(x, y, z);
         scale(c / shape.getWidth(),
-              d / shape.getHeight(),
-              e / shape.getDepth());
+                d / shape.getHeight(),
+                e / shape.getDepth());
 
       } else if (shapeMode == CORNERS) {
         // c, d, e are x2/y2/z2, make them into width/height/depth
@@ -3424,8 +3425,8 @@ public class PGraphicsOpenGL extends PGraphics {
         // then same as above
         translate(x, y, z);
         scale(c / shape.getWidth(),
-              d / shape.getHeight(),
-              e / shape.getDepth());
+                d / shape.getHeight(),
+                e / shape.getDepth());
       }
       shape.draw(this);
 
@@ -3629,11 +3630,8 @@ public class PGraphicsOpenGL extends PGraphics {
   protected void textCharModelImpl(FontTexture.TextureInfo info,
                                    float x0, float y0,
                                    float x1, float y1) {
-    if (textTex.currentTex != info.texIndex) {
-      textTex.setTexture(info.texIndex);
-    }
     beginShape(QUADS);
-    texture(textTex.getCurrentTexture());
+    texture(textTex.getTexture(info));
     vertex(x0, y0, info.u0, info.v0);
     vertex(x1, y0, info.u1, info.v0);
     vertex(x1, y1, info.u1, info.v1);
@@ -3700,13 +3698,13 @@ public class PGraphicsOpenGL extends PGraphics {
         for (int i = 1; i < bezierDetail; i++) {
           float t = (float)i / (float)bezierDetail;
           vertex(x + bezierPoint(lastX,
-                            lastX + (float) ((textPoints[0] - lastX) * 2/3.0),
-                            textPoints[2] + (float) ((textPoints[0] - textPoints[2]) * 2/3.0),
-                            textPoints[2], t),
-                 y + bezierPoint(lastY,
-                            lastY + (float) ((textPoints[1] - lastY) * 2/3.0),
-                            textPoints[3] + (float) ((textPoints[1] - textPoints[3]) * 2/3.0),
-                            textPoints[3], t));
+                          lastX + (float) ((textPoints[0] - lastX) * 2/3.0),
+                          textPoints[2] + (float) ((textPoints[0] - textPoints[2]) * 2/3.0),
+                          textPoints[2], t),
+                  y + bezierPoint(lastY,
+                          lastY + (float) ((textPoints[1] - lastY) * 2/3.0),
+                          textPoints[3] + (float) ((textPoints[1] - textPoints[3]) * 2/3.0),
+                          textPoints[3], t));
         }
         lastX = textPoints[2];
         lastY = textPoints[3];
@@ -3714,9 +3712,9 @@ public class PGraphicsOpenGL extends PGraphics {
         for (int i = 1; i < bezierDetail; i++) {
           float t = (float)i / (float)bezierDetail;
           vertex(x + bezierPoint(lastX, textPoints[0],
-                                 textPoints[2], textPoints[4], t),
-                 y + bezierPoint(lastY, textPoints[1],
-                                 textPoints[3], textPoints[5], t));
+                          textPoints[2], textPoints[4], t),
+                  y + bezierPoint(lastY, textPoints[1],
+                          textPoints[3], textPoints[5], t));
         }
         lastX = textPoints[4];
         lastY = textPoints[5];
@@ -3792,9 +3790,9 @@ public class PGraphicsOpenGL extends PGraphics {
   static protected void invTranslate(PMatrix3D matrix,
                                      float tx, float ty, float tz) {
     matrix.preApply(1, 0, 0, -tx,
-                    0, 1, 0, -ty,
-                    0, 0, 1, -tz,
-                    0, 0, 0, 1);
+            0, 1, 0, -ty,
+            0, 0, 1, -tz,
+            0, 0, 0, 1);
   }
 
 
@@ -3812,9 +3810,9 @@ public class PGraphicsOpenGL extends PGraphics {
       } else if (matrix instanceof PMatrix3D) {
         PMatrix3D tr = (PMatrix3D)matrix;
         float volumeScaleFactor =
-          Math.abs(tr.m00 * (tr.m11 * tr.m22 - tr.m12 * tr.m21) +
-                   tr.m01 * (tr.m12 * tr.m20 - tr.m10 * tr.m22) +
-                   tr.m02 * (tr.m10 * tr.m21 - tr.m11 * tr.m20));
+                Math.abs(tr.m00 * (tr.m11 * tr.m22 - tr.m12 * tr.m21) +
+                        tr.m01 * (tr.m12 * tr.m20 - tr.m10 * tr.m22) +
+                        tr.m02 * (tr.m10 * tr.m21 - tr.m11 * tr.m20));
         factor = (float) Math.pow(volumeScaleFactor, 1.0f / 3.0f);
       }
     }
@@ -3890,9 +3888,9 @@ public class PGraphicsOpenGL extends PGraphics {
     float t = 1.0f - c;
 
     matrix.preApply((t*v0*v0) + c, (t*v0*v1) - (s*v2), (t*v0*v2) + (s*v1), 0,
-                    (t*v0*v1) + (s*v2), (t*v1*v1) + c, (t*v1*v2) - (s*v0), 0,
-                    (t*v0*v2) - (s*v1), (t*v1*v2) + (s*v0), (t*v2*v2) + c, 0,
-                    0, 0, 0, 1);
+            (t*v0*v1) + (s*v2), (t*v1*v1) + c, (t*v1*v2) - (s*v0), 0,
+            (t*v0*v2) - (s*v1), (t*v1*v2) + (s*v0), (t*v2*v2) + c, 0,
+            0, 0, 0, 1);
   }
 
 
@@ -3941,9 +3939,9 @@ public class PGraphicsOpenGL extends PGraphics {
   public void shearX(float angle) {
     float t = (float) Math.tan(angle);
     applyMatrixImpl(1, t, 0, 0,
-                    0, 1, 0, 0,
-                    0, 0, 1, 0,
-                    0, 0, 0, 1);
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1);
   }
 
 
@@ -3951,9 +3949,9 @@ public class PGraphicsOpenGL extends PGraphics {
   public void shearY(float angle) {
     float t = (float) Math.tan(angle);
     applyMatrixImpl(1, 0, 0, 0,
-                    t, 1, 0, 0,
-                    0, 0, 1, 0,
-                    0, 0, 0, 1);
+            t, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1);
   }
 
 
@@ -3978,9 +3976,9 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public void applyMatrix(PMatrix2D source) {
     applyMatrixImpl(source.m00, source.m01, 0, source.m02,
-                    source.m10, source.m11, 0, source.m12,
-                             0,          0, 1, 0,
-                             0,          0, 0, 1);
+            source.m10, source.m11, 0, source.m12,
+            0,          0, 1, 0,
+            0,          0, 0, 1);
   }
 
 
@@ -3988,18 +3986,18 @@ public class PGraphicsOpenGL extends PGraphics {
   public void applyMatrix(float n00, float n01, float n02,
                           float n10, float n11, float n12) {
     applyMatrixImpl(n00, n01, 0, n02,
-                    n10, n11, 0, n12,
-                      0,   0, 1,   0,
-                      0,   0, 0,   1);
+            n10, n11, 0, n12,
+            0,   0, 1,   0,
+            0,   0, 0,   1);
   }
 
 
   @Override
   public void applyMatrix(PMatrix3D source) {
     applyMatrixImpl(source.m00, source.m01, source.m02, source.m03,
-                    source.m10, source.m11, source.m12, source.m13,
-                    source.m20, source.m21, source.m22, source.m23,
-                    source.m30, source.m31, source.m32, source.m33);
+            source.m10, source.m11, source.m12, source.m13,
+            source.m20, source.m21, source.m22, source.m23,
+            source.m30, source.m31, source.m32, source.m33);
   }
 
 
@@ -4012,9 +4010,9 @@ public class PGraphicsOpenGL extends PGraphics {
                           float n20, float n21, float n22, float n23,
                           float n30, float n31, float n32, float n33) {
     applyMatrixImpl(n00, n01, n02, n03,
-                    n10, n11, n12, n13,
-                    n20, n21, n22, n23,
-                    n30, n31, n32, n33);
+            n10, n11, n12, n13,
+            n20, n21, n22, n23,
+            n30, n31, n32, n33);
   }
 
 
@@ -4023,16 +4021,16 @@ public class PGraphicsOpenGL extends PGraphics {
                                  float n20, float n21, float n22, float n23,
                                  float n30, float n31, float n32, float n33) {
     modelview.apply(n00, n01, n02, n03,
-                    n10, n11, n12, n13,
-                    n20, n21, n22, n23,
-                    n30, n31, n32, n33);
+            n10, n11, n12, n13,
+            n20, n21, n22, n23,
+            n30, n31, n32, n33);
     modelviewInv.set(modelview);
     modelviewInv.invert();
 
     projmodelview.apply(n00, n01, n02, n03,
-                        n10, n11, n12, n13,
-                        n20, n21, n22, n23,
-                        n30, n31, n32, n33);
+            n10, n11, n12, n13,
+            n20, n21, n22, n23,
+            n30, n31, n32, n33);
   }
 
 
@@ -4143,9 +4141,9 @@ public class PGraphicsOpenGL extends PGraphics {
                               float n30, float n31, float n32, float n33) {
     flush();
     projection.apply(n00, n01, n02, n03,
-                     n10, n11, n12, n13,
-                     n20, n21, n22, n23,
-                     n30, n31, n32, n33);
+            n10, n11, n12, n13,
+            n20, n21, n22, n23,
+            n30, n31, n32, n33);
     updateProjmodelview();
   }
 
@@ -4164,19 +4162,19 @@ public class PGraphicsOpenGL extends PGraphics {
   // 0, 0, 0, 1
   protected boolean orthoProjection() {
     return zero(projection.m01) && zero(projection.m02) &&
-           zero(projection.m10) && zero(projection.m12) &&
-           zero(projection.m20) && zero(projection.m21) &&
-           zero(projection.m30) && zero(projection.m31) &&
-           zero(projection.m32) && same(projection.m33, 1);
+            zero(projection.m10) && zero(projection.m12) &&
+            zero(projection.m20) && zero(projection.m21) &&
+            zero(projection.m30) && zero(projection.m31) &&
+            zero(projection.m32) && same(projection.m33, 1);
   }
 
 
   protected boolean nonOrthoProjection() {
     return nonZero(projection.m01) || nonZero(projection.m02) ||
-           nonZero(projection.m10) || nonZero(projection.m12) ||
-           nonZero(projection.m20) || nonZero(projection.m21) ||
-           nonZero(projection.m30) || nonZero(projection.m31) ||
-           nonZero(projection.m32) || diff(projection.m33, 1);
+            nonZero(projection.m10) || nonZero(projection.m12) ||
+            nonZero(projection.m20) || nonZero(projection.m21) ||
+            nonZero(projection.m30) || nonZero(projection.m31) ||
+            nonZero(projection.m32) || diff(projection.m33, 1);
   }
 
 
@@ -4261,7 +4259,7 @@ public class PGraphicsOpenGL extends PGraphics {
   public void beginCamera() {
     if (manipulatingCamera) {
       throw new RuntimeException("beginCamera() cannot be called again "
-          + "before endCamera()");
+              + "before endCamera()");
     } else {
       manipulatingCamera = true;
     }
@@ -4280,7 +4278,7 @@ public class PGraphicsOpenGL extends PGraphics {
   public void endCamera() {
     if (!manipulatingCamera) {
       throw new RuntimeException("Cannot call endCamera() "
-          + "without first calling beginCamera()");
+              + "without first calling beginCamera()");
     }
 
     camera.set(modelview);
@@ -4434,9 +4432,9 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     modelview.set(x0, x1, x2, 0,
-                  y0, y1, y2, 0,
-                  z0, z1, z2, 0,
-                   0,  0,  0, 1);
+            y0, y1, y2, 0,
+            z0, z1, z2, 0,
+            0,  0,  0, 1);
 
     float tx = -eyeX;
     float ty = -eyeY;
@@ -4518,9 +4516,9 @@ public class PGraphicsOpenGL extends PGraphics {
 
     // The minus sign is needed to invert the Y axis.
     projection.set(x,  0, 0, tx,
-                   0, -y, 0, ty,
-                   0,  0, z, tz,
-                   0,  0, 0,  1);
+            0, -y, 0, ty,
+            0,  0, z, tz,
+            0,  0, 0,  1);
 
     updateProjmodelview();
   }
@@ -4583,9 +4581,9 @@ public class PGraphicsOpenGL extends PGraphics {
     float d = zfar - znear;
 
     projection.set(n2 / w,       0,  (right + left) / w,                0,
-                        0, -n2 / h,  (top + bottom) / h,                0,
-                        0,       0, -(zfar + znear) / d, -(n2 * zfar) / d,
-                        0,       0,                  -1,                0);
+            0, -n2 / h,  (top + bottom) / h,                0,
+            0,       0, -(zfar + znear) / d, -(n2 * zfar) / d,
+            0,       0,                  -1,                0);
 
     updateProjmodelview();
   }
@@ -4642,22 +4640,22 @@ public class PGraphicsOpenGL extends PGraphics {
 
   protected float screenXImpl(float x, float y, float z) {
     float ax =
-      modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
+            modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
     float ay =
-      modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
+            modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
     float az =
-      modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
+            modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
     float aw =
-      modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
+            modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
     return screenXImpl(ax, ay, az, aw);
   }
 
 
   protected float screenXImpl(float x, float y, float z, float w) {
     float ox =
-      projection.m00*x + projection.m01*y + projection.m02*z + projection.m03*w;
+            projection.m00*x + projection.m01*y + projection.m02*z + projection.m03*w;
     float ow =
-      projection.m30*x + projection.m31*y + projection.m32*z + projection.m33*w;
+            projection.m30*x + projection.m31*y + projection.m32*z + projection.m33*w;
 
     if (nonZero(ow)) {
       ox /= ow;
@@ -4669,22 +4667,22 @@ public class PGraphicsOpenGL extends PGraphics {
 
   protected float screenYImpl(float x, float y, float z) {
     float ax =
-      modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
+            modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
     float ay =
-      modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
+            modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
     float az =
-      modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
+            modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
     float aw =
-      modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
+            modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
     return screenYImpl(ax, ay, az, aw);
   }
 
 
   protected float screenYImpl(float x, float y, float z, float w) {
     float oy =
-      projection.m10*x + projection.m11*y + projection.m12*z + projection.m13*w;
+            projection.m10*x + projection.m11*y + projection.m12*z + projection.m13*w;
     float ow =
-      projection.m30*x + projection.m31*y + projection.m32*z + projection.m33*w;
+            projection.m30*x + projection.m31*y + projection.m32*z + projection.m33*w;
 
     if (nonZero(ow)) {
       oy /= ow;
@@ -4698,22 +4696,22 @@ public class PGraphicsOpenGL extends PGraphics {
 
   protected float screenZImpl(float x, float y, float z) {
     float ax =
-      modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
+            modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
     float ay =
-      modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
+            modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
     float az =
-      modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
+            modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
     float aw =
-      modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
+            modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
     return screenZImpl(ax, ay, az, aw);
   }
 
 
   protected float screenZImpl(float x, float y, float z, float w) {
     float oz =
-      projection.m20*x + projection.m21*y + projection.m22*z + projection.m23*w;
+            projection.m20*x + projection.m21*y + projection.m22*z + projection.m23*w;
     float ow =
-      projection.m30*x + projection.m31*y + projection.m32*z + projection.m33*w;
+            projection.m30*x + projection.m31*y + projection.m32*z + projection.m33*w;
 
     if (nonZero(ow)) {
       oz /= ow;
@@ -4726,18 +4724,18 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public float modelX(float x, float y, float z) {
     float ax =
-      modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
+            modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
     float ay =
-      modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
+            modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
     float az =
-      modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
+            modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
     float aw =
-      modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
+            modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
 
     float ox =
-      cameraInv.m00*ax + cameraInv.m01*ay + cameraInv.m02*az + cameraInv.m03*aw;
+            cameraInv.m00*ax + cameraInv.m01*ay + cameraInv.m02*az + cameraInv.m03*aw;
     float ow =
-      cameraInv.m30*ax + cameraInv.m31*ay + cameraInv.m32*az + cameraInv.m33*aw;
+            cameraInv.m30*ax + cameraInv.m31*ay + cameraInv.m32*az + cameraInv.m33*aw;
 
     return nonZero(ow) ? ox / ow : ox;
   }
@@ -4746,18 +4744,18 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public float modelY(float x, float y, float z) {
     float ax =
-      modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
+            modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
     float ay =
-      modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
+            modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
     float az =
-      modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
+            modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
     float aw =
-      modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
+            modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
 
     float oy =
-      cameraInv.m10*ax + cameraInv.m11*ay + cameraInv.m12*az + cameraInv.m13*aw;
+            cameraInv.m10*ax + cameraInv.m11*ay + cameraInv.m12*az + cameraInv.m13*aw;
     float ow =
-      cameraInv.m30*ax + cameraInv.m31*ay + cameraInv.m32*az + cameraInv.m33*aw;
+            cameraInv.m30*ax + cameraInv.m31*ay + cameraInv.m32*az + cameraInv.m33*aw;
 
     return nonZero(ow) ? oy / ow : oy;
   }
@@ -4766,18 +4764,18 @@ public class PGraphicsOpenGL extends PGraphics {
   @Override
   public float modelZ(float x, float y, float z) {
     float ax =
-      modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
+            modelview.m00*x + modelview.m01*y + modelview.m02*z + modelview.m03;
     float ay =
-      modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
+            modelview.m10*x + modelview.m11*y + modelview.m12*z + modelview.m13;
     float az =
-      modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
+            modelview.m20*x + modelview.m21*y + modelview.m22*z + modelview.m23;
     float aw =
-      modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
+            modelview.m30*x + modelview.m31*y + modelview.m32*z + modelview.m33;
 
     float oz =
-      cameraInv.m20*ax + cameraInv.m21*ay + cameraInv.m22*az + cameraInv.m23*aw;
+            cameraInv.m20*ax + cameraInv.m21*ay + cameraInv.m22*az + cameraInv.m23*aw;
     float ow =
-      cameraInv.m30*ax + cameraInv.m31*ay + cameraInv.m32*az + cameraInv.m33*aw;
+            cameraInv.m30*ax + cameraInv.m31*ay + cameraInv.m32*az + cameraInv.m33*aw;
 
     return nonZero(ow) ? oz / ow : oz;
   }
@@ -4987,7 +4985,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     ambientLight(colorModeX * 0.5f, colorModeY * 0.5f, colorModeZ * 0.5f);
     directionalLight(colorModeX * 0.5f, colorModeY * 0.5f, colorModeZ * 0.5f,
-                     0, 0, -1);
+            0, 0, -1);
 
     colorMode = colorModeSaved;
   }
@@ -5022,7 +5020,7 @@ public class PGraphicsOpenGL extends PGraphics {
     enableLighting();
     if (lightCount == PGL.MAX_LIGHTS) {
       throw new RuntimeException("can only create " + PGL.MAX_LIGHTS +
-                                 " lights");
+              " lights");
     }
 
     lightType[lightCount] = AMBIENT;
@@ -5035,8 +5033,8 @@ public class PGraphicsOpenGL extends PGraphics {
     noLightSpecular(lightCount);
     noLightSpot(lightCount);
     lightFalloff(lightCount, currentLightFalloffConstant,
-                             currentLightFalloffLinear,
-                             currentLightFalloffQuadratic);
+            currentLightFalloffLinear,
+            currentLightFalloffQuadratic);
 
     lightCount++;
   }
@@ -5048,7 +5046,7 @@ public class PGraphicsOpenGL extends PGraphics {
     enableLighting();
     if (lightCount == PGL.MAX_LIGHTS) {
       throw new RuntimeException("can only create " + PGL.MAX_LIGHTS +
-                                 " lights");
+              " lights");
     }
 
     lightType[lightCount] = DIRECTIONAL;
@@ -5059,8 +5057,8 @@ public class PGraphicsOpenGL extends PGraphics {
     noLightAmbient(lightCount);
     lightDiffuse(lightCount, r, g, b);
     lightSpecular(lightCount, currentLightSpecular[0],
-                              currentLightSpecular[1],
-                              currentLightSpecular[2]);
+            currentLightSpecular[1],
+            currentLightSpecular[2]);
     noLightSpot(lightCount);
     noLightFalloff(lightCount);
 
@@ -5074,7 +5072,7 @@ public class PGraphicsOpenGL extends PGraphics {
     enableLighting();
     if (lightCount == PGL.MAX_LIGHTS) {
       throw new RuntimeException("can only create " + PGL.MAX_LIGHTS +
-                                 " lights");
+              " lights");
     }
 
     lightType[lightCount] = POINT;
@@ -5085,12 +5083,12 @@ public class PGraphicsOpenGL extends PGraphics {
     noLightAmbient(lightCount);
     lightDiffuse(lightCount, r, g, b);
     lightSpecular(lightCount, currentLightSpecular[0],
-                              currentLightSpecular[1],
-                              currentLightSpecular[2]);
+            currentLightSpecular[1],
+            currentLightSpecular[2]);
     noLightSpot(lightCount);
     lightFalloff(lightCount, currentLightFalloffConstant,
-                             currentLightFalloffLinear,
-                             currentLightFalloffQuadratic);
+            currentLightFalloffLinear,
+            currentLightFalloffQuadratic);
 
     lightCount++;
   }
@@ -5104,7 +5102,7 @@ public class PGraphicsOpenGL extends PGraphics {
     enableLighting();
     if (lightCount == PGL.MAX_LIGHTS) {
       throw new RuntimeException("can only create " + PGL.MAX_LIGHTS +
-                                 " lights");
+              " lights");
     }
 
     lightType[lightCount] = SPOT;
@@ -5115,12 +5113,12 @@ public class PGraphicsOpenGL extends PGraphics {
     noLightAmbient(lightCount);
     lightDiffuse(lightCount, r, g, b);
     lightSpecular(lightCount, currentLightSpecular[0],
-                              currentLightSpecular[1],
-                              currentLightSpecular[2]);
+            currentLightSpecular[1],
+            currentLightSpecular[2]);
     lightSpot(lightCount, angle, concentration);
     lightFalloff(lightCount, currentLightFalloffConstant,
-                             currentLightFalloffLinear,
-                             currentLightFalloffQuadratic);
+            currentLightFalloffLinear,
+            currentLightFalloffQuadratic);
 
     lightCount++;
   }
@@ -5165,11 +5163,11 @@ public class PGraphicsOpenGL extends PGraphics {
   protected void lightPosition(int num, float x, float y, float z,
                                boolean dir) {
     lightPosition[4 * num + 0] =
-      x*modelview.m00 + y*modelview.m01 + z*modelview.m02 + modelview.m03;
+            x*modelview.m00 + y*modelview.m01 + z*modelview.m02 + modelview.m03;
     lightPosition[4 * num + 1] =
-      x*modelview.m10 + y*modelview.m11 + z*modelview.m12 + modelview.m13;
+            x*modelview.m10 + y*modelview.m11 + z*modelview.m12 + modelview.m13;
     lightPosition[4 * num + 2] =
-      x*modelview.m20 + y*modelview.m21 + z*modelview.m22 + modelview.m23;
+            x*modelview.m20 + y*modelview.m21 + z*modelview.m22 + modelview.m23;
 
     // Used to indicate if the light is directional or not.
     lightPosition[4 * num + 3] = dir ? 0 : 1;
@@ -5180,11 +5178,11 @@ public class PGraphicsOpenGL extends PGraphics {
     // Applying normal matrix to the light direction vector, which is the
     // transpose of the inverse of the modelview.
     float nx =
-      dx*modelviewInv.m00 + dy*modelviewInv.m10 + dz*modelviewInv.m20;
+            dx*modelviewInv.m00 + dy*modelviewInv.m10 + dz*modelviewInv.m20;
     float ny =
-      dx*modelviewInv.m01 + dy*modelviewInv.m11 + dz*modelviewInv.m21;
+            dx*modelviewInv.m01 + dy*modelviewInv.m11 + dz*modelviewInv.m21;
     float nz =
-      dx*modelviewInv.m02 + dy*modelviewInv.m12 + dz*modelviewInv.m22;
+            dx*modelviewInv.m02 + dy*modelviewInv.m12 + dz*modelviewInv.m22;
 
     float d = PApplet.dist(0, 0, 0, nx, ny, nz);
     if (0 < d) {
@@ -5292,7 +5290,7 @@ public class PGraphicsOpenGL extends PGraphics {
   protected void backgroundImpl() {
     flush();
     pgl.clearBackground(backgroundR, backgroundG, backgroundB, backgroundA,
-                        !hints[DISABLE_DEPTH_MASK]);
+            !hints[DISABLE_DEPTH_MASK]);
     loaded = false;
   }
 
@@ -5430,7 +5428,7 @@ public class PGraphicsOpenGL extends PGraphics {
       // of this the width and height might have a different size than the
       // one of the pixels arrays.
       pgl.readPixelsImpl(0, 0, pixelWidth, pixelHeight, PGL.RGBA, PGL.UNSIGNED_BYTE,
-                         pixelBuffer);
+              pixelBuffer);
     } catch (IndexOutOfBoundsException e) {
       // Silently catch the exception.
     }
@@ -5480,8 +5478,8 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     boolean needToDrawTex = primaryGraphics && (!pgl.isFBOBacked() ||
-                            (pgl.isFBOBacked() && pgl.isMultisampled())) ||
-                            offscreenMultisample;
+            (pgl.isFBOBacked() && pgl.isMultisampled())) ||
+            offscreenMultisample;
     if (texture == null) return;
     if (needToDrawTex) {
       // The texture to screen needs to be drawn only if we are on the primary
@@ -5495,7 +5493,7 @@ public class PGraphicsOpenGL extends PGraphics {
       int tw = PApplet.min(texture.glWidth - f * x, f * w);
       int th = PApplet.min(texture.glHeight - f * y, f * h);
       pgl.copyToTexture(texture.glTarget, texture.glFormat, texture.glName,
-                        f * x, f * y, tw, th, nativePixelBuffer);
+              f * x, f * y, tw, th, nativePixelBuffer);
       beginPixelsOp(OP_WRITE);
       drawTexture(x, y, w, h);
       endPixelsOp();
@@ -5504,7 +5502,7 @@ public class PGraphicsOpenGL extends PGraphics {
       // currently drawing to. Because the texture is invertex along Y, we
       // need to reflect that in the vertical arguments.
       pgl.copyToTexture(texture.glTarget, texture.glFormat, texture.glName,
-                        f * x, f * (height - (y + h)), f * w, f * h, nativePixelBuffer);
+              f * x, f * (height - (y + h)), f * w, f * h, nativePixelBuffer);
     }
   }
 
@@ -5527,7 +5525,7 @@ public class PGraphicsOpenGL extends PGraphics {
                          PImage target, int targetX, int targetY) {
     loadPixels();
     super.getImpl(sourceX, sourceY, sourceWidth, sourceHeight,
-                  target, targetX, targetY);
+            target, targetX, targetY);
   }
 
 
@@ -5558,8 +5556,8 @@ public class PGraphicsOpenGL extends PGraphics {
     // Draws the texture, copy() is very efficient because it simply renders
     // the texture cache of sourceImage using OpenGL.
     copy(sourceImage,
-         sourceX, sourceY, sourceWidth, sourceHeight,
-         targetX, targetY, sourceWidth, sourceHeight);
+            sourceX, sourceY, sourceWidth, sourceHeight,
+            targetX, targetY, sourceWidth, sourceHeight);
   }
 
 
@@ -5589,7 +5587,7 @@ public class PGraphicsOpenGL extends PGraphics {
   protected static void completeFinishedPixelTransfers() {
     ongoingPixelTransfersIterable.addAll(ongoingPixelTransfers);
     for (PGraphicsOpenGL.AsyncPixelReader pixelReader :
-        ongoingPixelTransfersIterable) {
+            ongoingPixelTransfersIterable) {
       // if the getter was not called this frame,
       // tell it to check for completed transfers now
       if (!pixelReader.calledThisFrame) {
@@ -5603,7 +5601,7 @@ public class PGraphicsOpenGL extends PGraphics {
   protected static void completeAllPixelTransfers() {
     ongoingPixelTransfersIterable.addAll(ongoingPixelTransfers);
     for (PGraphicsOpenGL.AsyncPixelReader pixelReader :
-        ongoingPixelTransfersIterable) {
+            ongoingPixelTransfersIterable) {
       pixelReader.completeAllTransfers();
     }
     ongoingPixelTransfersIterable.clear();
@@ -5705,7 +5703,7 @@ public class PGraphicsOpenGL extends PGraphics {
       }
 
       while (asyncImageSaver.hasAvailableTarget() &&
-          isLastTransferComplete()) {
+              isLastTransferComplete()) {
         endTransfer();
       }
 
@@ -5744,7 +5742,7 @@ public class PGraphicsOpenGL extends PGraphics {
       if (size <= 0) return false;
       int status = pgl.clientWaitSync(fences[tail], 0, 0);
       return (status == PGL.ALREADY_SIGNALED) ||
-          (status == PGL.CONDITION_SATISFIED);
+              (status == PGL.CONDITION_SATISFIED);
     }
 
 
@@ -5754,8 +5752,8 @@ public class PGraphicsOpenGL extends PGraphics {
         if (widths[head] * heights[head] != pixelWidth * pixelHeight) {
           pgl.bindBuffer(PGL.PIXEL_PACK_BUFFER, pbos[head]);
           pgl.bufferData(PGL.PIXEL_PACK_BUFFER,
-                         Integer.SIZE/8 * pixelWidth * pixelHeight,
-                         null, PGL.STREAM_READ);
+                  Integer.SIZE/8 * pixelWidth * pixelHeight,
+                  null, PGL.STREAM_READ);
         }
         widths[head] = pixelWidth;
         heights[head] = pixelHeight;
@@ -5778,18 +5776,18 @@ public class PGraphicsOpenGL extends PGraphics {
       pgl.deleteSync(fences[tail]);
       pgl.bindBuffer(PGL.PIXEL_PACK_BUFFER, pbos[tail]);
       ByteBuffer readBuffer = pgl.mapBuffer(PGL.PIXEL_PACK_BUFFER,
-                                            PGL.READ_ONLY);
+              PGL.READ_ONLY);
       if (readBuffer != null) {
         int format = primaryGraphics ? OPENGL_NATIVE_OPAQUE : OPENGL_NATIVE;
         PImage target = asyncImageSaver.getAvailableTarget(widths[tail],
-                                                           heights[tail],
-                                                           format);
+                heights[tail],
+                format);
         if (target == null) return;
         readBuffer.rewind();
         readBuffer.asIntBuffer().get(target.pixels);
         pgl.unmapBuffer(PGL.PIXEL_PACK_BUFFER);
         asyncImageSaver.saveTargetAsync(PGraphicsOpenGL.this, target,
-                                        filenames[tail]);
+                filenames[tail]);
       }
 
       pgl.bindBuffer(PGL.PIXEL_PACK_BUFFER, 0);
@@ -5839,7 +5837,7 @@ public class PGraphicsOpenGL extends PGraphics {
         try {
           // See comments in readPixels() for the reason for this try/catch.
           pgl.readPixelsImpl(0, 0, pixelWidth, pixelHeight, PGL.RGBA, PGL.UNSIGNED_BYTE,
-                             nativePixelBuffer);
+                  nativePixelBuffer);
         } catch (IndexOutOfBoundsException e) {
         }
         endPixelsOp();
@@ -5849,8 +5847,8 @@ public class PGraphicsOpenGL extends PGraphics {
         }
       }
     } else if (offscreenMultisample) {
-       // We need to copy the contents of the multisampled buffer to the color
-       // buffer, so the later is up-to-date with the last drawing.
+      // We need to copy the contents of the multisampled buffer to the color
+      // buffer, so the later is up-to-date with the last drawing.
       FrameBuffer ofb = offscreenFramebuffer;
       FrameBuffer mfb = multisampleFramebuffer;
       if (ofb != null && mfb != null) {
@@ -5895,7 +5893,7 @@ public class PGraphicsOpenGL extends PGraphics {
     if (pixelWidth == 0 || pixelHeight == 0) return;
     if (texture == null || texture.contextIsOutdated()) {
       Texture.Parameters params = new Texture.Parameters(ARGB,
-                                                         sampling, mipmap);
+              sampling, mipmap);
       texture = new Texture(this, pixelWidth, pixelHeight, params);
       texture.invertedY(true);
       texture.colorBuffer(true);
@@ -5931,8 +5929,8 @@ public class PGraphicsOpenGL extends PGraphics {
       // irrespective of the alpha
       pgl.disable(PGL.BLEND);
       pgl.drawTexture(texture.glTarget, texture.glName,
-                      texture.glWidth, texture.glHeight,
-                      0, 0, width, height);
+              texture.glWidth, texture.glHeight,
+              0, 0, width, height);
       pgl.enable(PGL.BLEND);
     }
   }
@@ -5944,10 +5942,10 @@ public class PGraphicsOpenGL extends PGraphics {
       // invert the y coordinates of the screen rectangle.
       pgl.disable(PGL.BLEND);
       pgl.drawTexture(texture.glTarget, texture.glName,
-                      texture.glWidth, texture.glHeight,
-                      0, 0, width, height,
-                      x, y, x + w, y + h,
-                      x, height - (y + h), x + w, height - y);
+              texture.glWidth, texture.glHeight,
+              0, 0, width, height,
+              x, y, x + w, y + h,
+              x, height - (y + h), x + w, height - y);
       pgl.enable(PGL.BLEND);
     }
   }
@@ -5959,8 +5957,8 @@ public class PGraphicsOpenGL extends PGraphics {
       // irrespective of the alpha
       pgl.disable(PGL.BLEND);
       pgl.drawTexture(ptexture.glTarget, ptexture.glName,
-                      ptexture.glWidth, ptexture.glHeight,
-                      0, 0, width, height);
+              ptexture.glWidth, ptexture.glHeight,
+              0, 0, width, height);
       pgl.enable(PGL.BLEND);
     }
   }
@@ -5984,13 +5982,13 @@ public class PGraphicsOpenGL extends PGraphics {
     updatePixelSize();
     if (alpha.width != pixelWidth || alpha.height != pixelHeight) {
       throw new RuntimeException("The PImage used with mask() must be " +
-      "the same size as the applet.");
+              "the same size as the applet.");
     }
 
     PGraphicsOpenGL ppg = getPrimaryPG();
     if (ppg.maskShader == null) {
       ppg.maskShader = new PShader(parent, defTextureShaderVertURL,
-                                           maskShaderFragURL);
+              maskShaderFragURL);
     }
     ppg.maskShader.set("mask", alpha);
     filter(ppg.maskShader);
@@ -6047,7 +6045,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     if (filterTexture == null || filterTexture.contextIsOutdated()) {
       filterTexture = new Texture(this, texture.width, texture.height,
-                                  texture.getParameters());
+              texture.getParameters());
       filterTexture.invertedY(true);
       filterImage = wrapTexture(filterTexture);
     }
@@ -6168,9 +6166,9 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     pgl.drawTexture(tex.glTarget, tex.glName, tex.glWidth, tex.glHeight,
-                    0, 0, width, height,
-                    texX0, texY0, texX1, texY1,
-                    scrX0, scrY0, scrX1, scrY1);
+            0, 0, width, height,
+            texX0, texY0, texX1, texY1,
+            scrX0, scrY0, scrX1, scrY1);
 
 
     if (needEndDraw) {
@@ -6210,25 +6208,25 @@ public class PGraphicsOpenGL extends PGraphics {
     } else if (blendMode == BLEND) {
       if (blendEqSupported) {
         pgl.blendEquationSeparate(PGL.FUNC_ADD,
-                                  PGL.FUNC_ADD);
+                PGL.FUNC_ADD);
       }
       pgl.blendFuncSeparate(PGL.SRC_ALPHA, PGL.ONE_MINUS_SRC_ALPHA,
-                            PGL.ONE,       PGL.ONE);
+              PGL.ONE,       PGL.ONE);
 
     } else if (blendMode == ADD) {
       if (blendEqSupported) {
         pgl.blendEquationSeparate(PGL.FUNC_ADD,
-                                  PGL.FUNC_ADD);
+                PGL.FUNC_ADD);
       }
       pgl.blendFuncSeparate(PGL.SRC_ALPHA, PGL.ONE,
-                            PGL.ONE,       PGL.ONE);
+              PGL.ONE,       PGL.ONE);
 
     } else if (blendMode == SUBTRACT) {
       if (blendEqSupported) {
         pgl.blendEquationSeparate(PGL.FUNC_REVERSE_SUBTRACT,
-                                  PGL.FUNC_ADD);
+                PGL.FUNC_ADD);
         pgl.blendFuncSeparate(PGL.SRC_ALPHA, PGL.ONE,
-                              PGL.ONE,       PGL.ONE);
+                PGL.ONE,       PGL.ONE);
       } else {
         PGraphics.showWarning(BLEND_DRIVER_ERROR, "SUBTRACT");
       }
@@ -6236,9 +6234,9 @@ public class PGraphicsOpenGL extends PGraphics {
     } else if (blendMode == LIGHTEST) {
       if (blendEqSupported) {
         pgl.blendEquationSeparate(PGL.FUNC_MAX,
-                                  PGL.FUNC_ADD);
+                PGL.FUNC_ADD);
         pgl.blendFuncSeparate(PGL.ONE, PGL.ONE,
-                              PGL.ONE, PGL.ONE);
+                PGL.ONE, PGL.ONE);
       } else {
         PGraphics.showWarning(BLEND_DRIVER_ERROR, "LIGHTEST");
       }
@@ -6246,9 +6244,9 @@ public class PGraphicsOpenGL extends PGraphics {
     } else if (blendMode == DARKEST) {
       if (blendEqSupported) {
         pgl.blendEquationSeparate(PGL.FUNC_MIN,
-                                  PGL.FUNC_ADD);
+                PGL.FUNC_ADD);
         pgl.blendFuncSeparate(PGL.ONE, PGL.ONE,
-                              PGL.ONE, PGL.ONE);
+                PGL.ONE, PGL.ONE);
       } else {
         PGraphics.showWarning(BLEND_DRIVER_ERROR, "DARKEST");
       }
@@ -6256,26 +6254,26 @@ public class PGraphicsOpenGL extends PGraphics {
     } else if (blendMode == EXCLUSION) {
       if (blendEqSupported) {
         pgl.blendEquationSeparate(PGL.FUNC_ADD,
-                                  PGL.FUNC_ADD);
+                PGL.FUNC_ADD);
       }
       pgl.blendFuncSeparate(PGL.ONE_MINUS_DST_COLOR, PGL.ONE_MINUS_SRC_COLOR,
-                            PGL.ONE,                 PGL.ONE);
+              PGL.ONE,                 PGL.ONE);
 
     } else if (blendMode == MULTIPLY) {
       if (blendEqSupported) {
         pgl.blendEquationSeparate(PGL.FUNC_ADD,
-                                  PGL.FUNC_ADD);
+                PGL.FUNC_ADD);
       }
       pgl.blendFuncSeparate(PGL.ZERO, PGL.SRC_COLOR,
-                            PGL.ONE,  PGL.ONE);
+              PGL.ONE,  PGL.ONE);
 
     } else if (blendMode == SCREEN) {
       if (blendEqSupported) {
         pgl.blendEquationSeparate(PGL.FUNC_ADD,
-                                  PGL.FUNC_ADD);
+                PGL.FUNC_ADD);
       }
       pgl.blendFuncSeparate(PGL.ONE_MINUS_DST_COLOR, PGL.ONE,
-                            PGL.ONE,                 PGL.ONE);
+              PGL.ONE,                 PGL.ONE);
 
     } else if (blendMode == DIFFERENCE) {
       PGraphics.showWarning(BLEND_RENDERER_ERROR, "DIFFERENCE");
@@ -6423,8 +6421,8 @@ public class PGraphicsOpenGL extends PGraphics {
    */
   protected Texture addTexture(PImage img) {
     Texture.Parameters params =
-      new Texture.Parameters(ARGB, textureSampling,
-                             getHint(ENABLE_TEXTURE_MIPMAPS), textureWrap);
+            new Texture.Parameters(ARGB, textureSampling,
+                    getHint(ENABLE_TEXTURE_MIPMAPS), textureWrap);
     return addTexture(img, params);
   }
 
@@ -6445,8 +6443,8 @@ public class PGraphicsOpenGL extends PGraphics {
 
   protected void checkTexture(Texture tex) {
     if (!tex.colorBuffer() &&
-        (tex.usingMipmaps == hints[DISABLE_TEXTURE_MIPMAPS] ||
-         tex.currentSampling() != textureSampling)) {
+            (tex.usingMipmaps == hints[DISABLE_TEXTURE_MIPMAPS] ||
+                    tex.currentSampling() != textureSampling)) {
       if (hints[DISABLE_TEXTURE_MIPMAPS]) {
         tex.usingMipmaps(false, textureSampling);
       } else {
@@ -6455,7 +6453,7 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     if ((tex.usingRepeat && textureWrap == CLAMP) ||
-        (!tex.usingRepeat && textureWrap == REPEAT)) {
+            (!tex.usingRepeat && textureWrap == REPEAT)) {
       if (textureWrap == CLAMP) {
         tex.usingRepeat(false);
       } else {
@@ -6593,10 +6591,10 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     boolean packed = depthBits == 24 && stencilBits == 8 &&
-                     packedDepthStencilSupported;
+            packedDepthStencilSupported;
     if (PGraphicsOpenGL.fboMultisampleSupported && 1 < PGL.smoothToSamples(smooth)) {
       mfb = new FrameBuffer(this, texture.glWidth, texture.glHeight, PGL.smoothToSamples(smooth), 0,
-                            depthBits, stencilBits, packed, false);
+              depthBits, stencilBits, packed, false);
       mfb.clear();
       multisampleFramebuffer = mfb;
       offscreenMultisample = true;
@@ -6606,15 +6604,15 @@ public class PGraphicsOpenGL extends PGraphics {
       // since they are part of the multisampled framebuffer.
       if (hints[ENABLE_BUFFER_READING]) {
         ofb = new FrameBuffer(this, texture.glWidth, texture.glHeight, 1, 1,
-                              depthBits, stencilBits, packed, false);
+                depthBits, stencilBits, packed, false);
       } else {
         ofb = new FrameBuffer(this, texture.glWidth, texture.glHeight, 1, 1,
-                          0, 0, false, false);
+                0, 0, false, false);
       }
     } else {
       smooth = 0;
       ofb = new FrameBuffer(this, texture.glWidth, texture.glHeight, 1, 1,
-                            depthBits, stencilBits, packed, false);
+              depthBits, stencilBits, packed, false);
       offscreenMultisample = false;
     }
     ofb.setColorBuffer(texture);
@@ -6703,7 +6701,7 @@ public class PGraphicsOpenGL extends PGraphics {
     viewport.put(0, 0); viewport.put(1, 0);
     viewport.put(2, width); viewport.put(3, height);
     pgl.viewport(viewport.get(0), viewport.get(1),
-                 viewport.get(2), viewport.get(3));
+            viewport.get(2), viewport.get(3));
   }
 
 
@@ -6744,7 +6742,7 @@ public class PGraphicsOpenGL extends PGraphics {
 //      pgl.getIntegerv(PGL.SAMPLES, intBuffer);
 //      int temp = intBuffer.get(0);
 //      if (smooth != temp && 1 < temp && 1 < smooth) {
-        // TODO check why the samples is higher that initialized smooth level.
+      // TODO check why the samples is higher that initialized smooth level.
 //        quality = temp;
 //      }
     }
@@ -6873,11 +6871,11 @@ public class PGraphicsOpenGL extends PGraphics {
     // overwrite the default shaders with vendor specific versions
     // if needed
     if (OPENGL_RENDERER.equals("VideoCore IV HW") ||    // Broadcom's binary driver for Raspberry Pi
-      OPENGL_RENDERER.equals("Gallium 0.4 on VC4")) {   // Mesa driver for same hardware
-        defLightShaderVertURL =
-          PGraphicsOpenGL.class.getResource("/assets/shaders/LightVert-vc4.glsl");
-        defTexlightShaderVertURL =
-          PGraphicsOpenGL.class.getResource("/assets/shaders/TexLightVert-vc4.glsl");
+            OPENGL_RENDERER.equals("Gallium 0.4 on VC4")) {   // Mesa driver for same hardware
+      defLightShaderVertURL =
+              PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/LightVert-vc4.glsl");
+      defTexlightShaderVertURL =
+              PGraphicsOpenGL.class.getResource("/processing/opengl/shaders/TexLightVert-vc4.glsl");
     }
 
     glParamsRead = true;
@@ -6897,7 +6895,7 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     int type = PShader.getShaderType(parent.loadStrings(fragFilename),
-                                     PShader.POLY);
+            PShader.POLY);
     PShader shader = new PShader(parent);
     shader.setType(type);
     shader.setFragmentShader(fragFilename);
@@ -7201,7 +7199,7 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     public boolean diff(VertexAttribute attr) {
-       return !name.equals(attr.name) ||
+      return !name.equals(attr.name) ||
               kind != attr.kind ||
               type != attr.type ||
               size != attr.size ||
@@ -8091,91 +8089,91 @@ public class PGraphicsOpenGL extends PGraphics {
 
     int addVertex(float x, float y, boolean brk) {
       return addVertex(x, y, 0,
-                       fillColor,
-                       normalX, normalY, normalZ,
-                       0, 0,
-                       strokeColor, strokeWeight,
-                       ambientColor, specularColor, emissiveColor, shininessFactor,
-                       VERTEX, brk);
+              fillColor,
+              normalX, normalY, normalZ,
+              0, 0,
+              strokeColor, strokeWeight,
+              ambientColor, specularColor, emissiveColor, shininessFactor,
+              VERTEX, brk);
     }
 
     int addVertex(float x, float y,
                   int code, boolean brk) {
       return addVertex(x, y, 0,
-                       fillColor,
-                       normalX, normalY, normalZ,
-                       0, 0,
-                       strokeColor, strokeWeight,
-                       ambientColor, specularColor, emissiveColor, shininessFactor,
-                       code, brk);
+              fillColor,
+              normalX, normalY, normalZ,
+              0, 0,
+              strokeColor, strokeWeight,
+              ambientColor, specularColor, emissiveColor, shininessFactor,
+              code, brk);
     }
 
     int addVertex(float x, float y,
                   float u, float v,
                   boolean brk) {
       return addVertex(x, y, 0,
-                       fillColor,
-                       normalX, normalY, normalZ,
-                       u, v,
-                       strokeColor, strokeWeight,
-                       ambientColor, specularColor, emissiveColor, shininessFactor,
-                       VERTEX, brk);
+              fillColor,
+              normalX, normalY, normalZ,
+              u, v,
+              strokeColor, strokeWeight,
+              ambientColor, specularColor, emissiveColor, shininessFactor,
+              VERTEX, brk);
     }
 
     int addVertex(float x, float y,
                   float u, float v,
                   int code, boolean brk) {
       return addVertex(x, y, 0,
-                       fillColor,
-                       normalX, normalY, normalZ,
-                       u, v,
-                       strokeColor, strokeWeight,
-                       ambientColor, specularColor, emissiveColor, shininessFactor,
-                       code, brk);
+              fillColor,
+              normalX, normalY, normalZ,
+              u, v,
+              strokeColor, strokeWeight,
+              ambientColor, specularColor, emissiveColor, shininessFactor,
+              code, brk);
     }
 
     int addVertex(float x, float y, float z, boolean brk) {
       return addVertex(x, y, z,
-                       fillColor,
-                       normalX, normalY, normalZ,
-                       0, 0,
-                       strokeColor, strokeWeight,
-                       ambientColor, specularColor, emissiveColor, shininessFactor,
-                       VERTEX, brk);
+              fillColor,
+              normalX, normalY, normalZ,
+              0, 0,
+              strokeColor, strokeWeight,
+              ambientColor, specularColor, emissiveColor, shininessFactor,
+              VERTEX, brk);
     }
 
     int addVertex(float x, float y, float z, int code, boolean brk) {
       return addVertex(x, y, z,
-                       fillColor,
-                       normalX, normalY, normalZ,
-                       0, 0,
-                       strokeColor, strokeWeight,
-                       ambientColor, specularColor, emissiveColor, shininessFactor,
-                       code, brk);
+              fillColor,
+              normalX, normalY, normalZ,
+              0, 0,
+              strokeColor, strokeWeight,
+              ambientColor, specularColor, emissiveColor, shininessFactor,
+              code, brk);
     }
 
     int addVertex(float x, float y, float z,
                   float u, float v,
                   boolean brk) {
       return addVertex(x, y, z,
-                       fillColor,
-                       normalX, normalY, normalZ,
-                       u, v,
-                       strokeColor, strokeWeight,
-                       ambientColor, specularColor, emissiveColor, shininessFactor,
-                       VERTEX, brk);
+              fillColor,
+              normalX, normalY, normalZ,
+              u, v,
+              strokeColor, strokeWeight,
+              ambientColor, specularColor, emissiveColor, shininessFactor,
+              VERTEX, brk);
     }
 
     int addVertex(float x, float y, float z,
                   float u, float v,
                   int code, boolean brk) {
       return addVertex(x, y, z,
-                       fillColor,
-                       normalX, normalY, normalZ,
-                       u, v,
-                       strokeColor, strokeWeight,
-                       ambientColor, specularColor, emissiveColor, shininessFactor,
-                       code, brk);
+              fillColor,
+              normalX, normalY, normalZ,
+              u, v,
+              strokeColor, strokeWeight,
+              ambientColor, specularColor, emissiveColor, shininessFactor,
+              code, brk);
     }
 
     int addVertex(float x, float y, float z,
@@ -8228,9 +8226,9 @@ public class PGraphicsOpenGL extends PGraphics {
       }
 
       if (brk || (code == VERTEX && codes != null) ||
-          code == BEZIER_VERTEX ||
-          code == QUADRATIC_VERTEX ||
-          code == CURVE_VERTEX) {
+              code == BEZIER_VERTEX ||
+              code == QUADRATIC_VERTEX ||
+              code == CURVE_VERTEX) {
         if (codes == null) {
           codes = new int[PApplet.max(PGL.DEFAULT_IN_VERTICES, vertexCount)];
           Arrays.fill(codes, 0, vertexCount, VERTEX);
@@ -8690,9 +8688,9 @@ public class PGraphicsOpenGL extends PGraphics {
       float sy2 = pg.screenY(x + w, y + h);
 
       int accuracy =
-        PApplet.min(MAX_POINT_ACCURACY, PApplet.max(MIN_POINT_ACCURACY,
-                    (int) (TWO_PI * PApplet.dist(sx1, sy1, sx2, sy2) /
-                    POINT_ACCURACY_FACTOR)));
+              PApplet.min(MAX_POINT_ACCURACY, PApplet.max(MIN_POINT_ACCURACY,
+                      (int) (TWO_PI * PApplet.dist(sx1, sy1, sx2, sy2) /
+                              POINT_ACCURACY_FACTOR)));
       float inc = (float) SINCOS_LENGTH / accuracy;
 
       if (fill) {
@@ -8703,8 +8701,8 @@ public class PGraphicsOpenGL extends PGraphics {
       float val = 0;
       for (int i = 0; i < accuracy; i++) {
         idx = addVertex(centerX + cosLUT[(int) val] * radiusH,
-                        centerY + sinLUT[(int) val] * radiusV,
-                        VERTEX, i == 0 && !fill);
+                centerY + sinLUT[(int) val] * radiusV,
+                VERTEX, i == 0 && !fill);
         val = (val + inc) % SINCOS_LENGTH;
 
         if (0 < i) {
@@ -8717,8 +8715,8 @@ public class PGraphicsOpenGL extends PGraphics {
       }
       // Back to the beginning
       addVertex(centerX + cosLUT[0] * radiusH,
-                centerY + sinLUT[0] * radiusV,
-                VERTEX, false);
+              centerY + sinLUT[0] * radiusV,
+              VERTEX, false);
       if (stroke) {
         addEdge(idx, idx0, false, false);
         closeEdge(idx, idx0);
@@ -8777,9 +8775,9 @@ public class PGraphicsOpenGL extends PGraphics {
         float sy2 = pg.screenY(x + w, y + h);
 
         int accuracy =
-          PApplet.min(MAX_POINT_ACCURACY, PApplet.max(MIN_POINT_ACCURACY,
-                      (int) (TWO_PI * PApplet.dist(sx1, sy1, sx2, sy2) /
-                      POINT_ACCURACY_FACTOR)));
+                PApplet.min(MAX_POINT_ACCURACY, PApplet.max(MIN_POINT_ACCURACY,
+                        (int) (TWO_PI * PApplet.dist(sx1, sy1, sx2, sy2) /
+                                POINT_ACCURACY_FACTOR)));
         inc = PApplet.max(1, SINCOS_LENGTH / accuracy);
       }
 
@@ -8801,8 +8799,8 @@ public class PGraphicsOpenGL extends PGraphics {
 
         pidx = idx;
         idx = addVertex(centerX + cosLUT[ii] * hr,
-                        centerY + sinLUT[ii] * vr,
-                        VERTEX, i == 0 && !fill);
+                centerY + sinLUT[ii] * vr,
+                VERTEX, i == 0 && !fill);
 
         if (stroke) {
           if (arcMode == CHORD || arcMode == PIE) {
@@ -8810,7 +8808,7 @@ public class PGraphicsOpenGL extends PGraphics {
           } else if (0 < i) {
             // when drawing full circle, the edge is closed later
             addEdge(pidx, idx, i == PApplet.min(inc, length),
-                               i == length && !fullCircle);
+                    i == length && !fullCircle);
           }
         }
       } while (i < length);
@@ -8965,14 +8963,14 @@ public class PGraphicsOpenGL extends PGraphics {
       for (int i = 0; i < detailU; i++) {
         setNormal(pg.sphereX[i], pg.sphereY[i], pg.sphereZ[i]);
         addVertex(r*pg.sphereX[i], r*pg.sphereY[i], r*pg.sphereZ[i], u , v,
-                  VERTEX, false);
+                VERTEX, false);
         u -= du;
       }
       vertCount += detailU;
       vert1 = vertCount;
       setNormal(pg.sphereX[0], pg.sphereY[0], pg.sphereZ[0]);
       addVertex(r*pg.sphereX[0], r*pg.sphereY[0], r*pg.sphereZ[0], u, v,
-                VERTEX, false);
+              VERTEX, false);
       vertCount++;
 
       for (int i = 0; i < detailU; i++) {
@@ -8999,14 +8997,14 @@ public class PGraphicsOpenGL extends PGraphics {
           int ioff = offset + i;
           setNormal(pg.sphereX[ioff], pg.sphereY[ioff], pg.sphereZ[ioff]);
           addVertex(r*pg.sphereX[ioff], r*pg.sphereY[ioff], r*pg.sphereZ[ioff],
-                    u , v, VERTEX, false);
+                  u , v, VERTEX, false);
           u -= du;
         }
         vertCount += detailU;
         vert1 = vertCount;
         setNormal(pg.sphereX[offset], pg.sphereY[offset], pg.sphereZ[offset]);
         addVertex(r*pg.sphereX[offset], r*pg.sphereY[offset], r*pg.sphereZ[offset],
-                  u, v, VERTEX, false);
+                u, v, VERTEX, false);
         vertCount++;
 
         for (int i = 0; i < detailU; i++) {
@@ -9359,8 +9357,8 @@ public class PGraphicsOpenGL extends PGraphics {
 
     boolean isFull() {
       return PGL.FLUSH_VERTEX_COUNT <= polyVertexCount ||
-             PGL.FLUSH_VERTEX_COUNT <= lineVertexCount ||
-             PGL.FLUSH_VERTEX_COUNT <= pointVertexCount;
+              PGL.FLUSH_VERTEX_COUNT <= lineVertexCount ||
+              PGL.FLUSH_VERTEX_COUNT <= pointVertexCount;
     }
 
     void getPolyVertexMin(PVector v, int first, int last) {
@@ -9457,7 +9455,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     protected void updatePolyVerticesBuffer(int offset, int size) {
       PGL.updateFloatBuffer(polyVerticesBuffer, polyVertices,
-                            4 * offset, 4 * size);
+              4 * offset, 4 * size);
     }
 
     protected void updatePolyColorsBuffer() {
@@ -9474,7 +9472,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     protected void updatePolyNormalsBuffer(int offset, int size) {
       PGL.updateFloatBuffer(polyNormalsBuffer, polyNormals,
-                            3 * offset, 3 * size);
+              3 * offset, 3 * size);
     }
 
     protected void updatePolyTexCoordsBuffer() {
@@ -9483,7 +9481,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     protected void updatePolyTexCoordsBuffer(int offset, int size) {
       PGL.updateFloatBuffer(polyTexCoordsBuffer, polyTexCoords,
-                            2 * offset, 2 * size);
+              2 * offset, 2 * size);
     }
 
     protected void updatePolyAmbientBuffer() {
@@ -9528,17 +9526,17 @@ public class PGraphicsOpenGL extends PGraphics {
         FloatBuffer buffer = (FloatBuffer)polyAttribBuffers.get(name);
         float[] array = fpolyAttribs.get(name);
         PGL.updateFloatBuffer(buffer, array,
-                              attrib.tessSize * offset, attrib.tessSize * size);
+                attrib.tessSize * offset, attrib.tessSize * size);
       } else if (attrib.type == PGL.INT) {
         IntBuffer buffer = (IntBuffer)polyAttribBuffers.get(name);
         int[] array = ipolyAttribs.get(name);
         PGL.updateIntBuffer(buffer, array,
-                            attrib.tessSize * offset, attrib.tessSize * size);
+                attrib.tessSize * offset, attrib.tessSize * size);
       } else if (attrib.type == PGL.BOOL) {
         ByteBuffer buffer = (ByteBuffer)polyAttribBuffers.get(name);
         byte[] array = bpolyAttribs.get(name);
         PGL.updateByteBuffer(buffer, array,
-                             attrib.tessSize * offset, attrib.tessSize * size);
+                attrib.tessSize * offset, attrib.tessSize * size);
       }
     }
 
@@ -9556,7 +9554,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     protected void updateLineVerticesBuffer(int offset, int size) {
       PGL.updateFloatBuffer(lineVerticesBuffer, lineVertices,
-                            4 * offset, 4 * size);
+              4 * offset, 4 * size);
     }
 
     protected void updateLineColorsBuffer() {
@@ -9573,7 +9571,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     protected void updateLineDirectionsBuffer(int offset, int size) {
       PGL.updateFloatBuffer(lineDirectionsBuffer, lineDirections,
-                            4 * offset, 4 * size);
+              4 * offset, 4 * size);
     }
 
     protected void updateLineIndicesBuffer() {
@@ -9590,7 +9588,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     protected void updatePointVerticesBuffer(int offset, int size) {
       PGL.updateFloatBuffer(pointVerticesBuffer, pointVertices,
-                            4 * offset, 4 * size);
+              4 * offset, 4 * size);
     }
 
     protected void updatePointColorsBuffer() {
@@ -9607,7 +9605,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     protected void updatePointOffsetsBuffer(int offset, int size) {
       PGL.updateFloatBuffer(pointOffsetsBuffer, pointOffsets,
-                            2 * offset, 2 * size);
+              2 * offset, 2 * size);
     }
 
     protected void updatePointIndicesBuffer() {
@@ -10178,100 +10176,100 @@ public class PGraphicsOpenGL extends PGraphics {
 
     void addPolyVertex(double[] d, boolean clampXY) {
       int fcolor =
-        (int)d[ 3] << 24 | (int)d[ 4] << 16 | (int)d[ 5] << 8 | (int)d[ 6];
-       int acolor =
-        (int)d[12] << 24 | (int)d[13] << 16 | (int)d[14] << 8 | (int)d[15];
-       int scolor =
-        (int)d[16] << 24 | (int)d[17] << 16 | (int)d[18] << 8 | (int)d[19];
-       int ecolor =
-        (int)d[20] << 24 | (int)d[21] << 16 | (int)d[22] << 8 | (int)d[23];
+              (int)d[ 3] << 24 | (int)d[ 4] << 16 | (int)d[ 5] << 8 | (int)d[ 6];
+      int acolor =
+              (int)d[12] << 24 | (int)d[13] << 16 | (int)d[14] << 8 | (int)d[15];
+      int scolor =
+              (int)d[16] << 24 | (int)d[17] << 16 | (int)d[18] << 8 | (int)d[19];
+      int ecolor =
+              (int)d[20] << 24 | (int)d[21] << 16 | (int)d[22] << 8 | (int)d[23];
 
-       addPolyVertex((float)d[ 0], (float)d[ 1], (float)d[ 2],
-                     fcolor,
-                     (float)d[ 7], (float)d[ 8], (float)d[ 9],
-                     (float)d[10], (float)d[11],
-                     acolor, scolor, ecolor,
-                     (float)d[24],
-                     clampXY);
+      addPolyVertex((float)d[ 0], (float)d[ 1], (float)d[ 2],
+              fcolor,
+              (float)d[ 7], (float)d[ 8], (float)d[ 9],
+              (float)d[10], (float)d[11],
+              acolor, scolor, ecolor,
+              (float)d[24],
+              clampXY);
 
-       if (25 < d.length) {
-         // Add the values of the custom attributes...
-         PMatrix3D mm = pg.modelview;
-         PMatrix3D nm = pg.modelviewInv;
-         int tessIdx = polyVertexCount - 1;
-         int index;
-         int pos = 25;
-         for (int i = 0; i < polyAttribs.size(); i++) {
-           VertexAttribute attrib = polyAttribs.get(i);
-           String name = attrib.name;
-           index = attrib.tessSize * tessIdx;
-           if (attrib.isColor()) {
-             // Reconstruct color from ARGB components
-             int color =
-               (int)d[pos + 0] << 24 | (int)d[pos + 1] << 16 | (int)d[pos + 2] << 8 | (int)d[pos + 3];
-             int[] tessValues = ipolyAttribs.get(name);
-             tessValues[index] = color;
-             pos += 4;
-           }  else if (attrib.isPosition()) {
-             float[] farray = fpolyAttribs.get(name);
-             float x = (float)d[pos++];
-             float y = (float)d[pos++];
-             float z = (float)d[pos++];
-             if (renderMode == IMMEDIATE && pg.flushMode == FLUSH_WHEN_FULL) {
-               if (clampXY) {
-                 // ceil emulates the behavior of JAVA2D
-                 farray[index++] =
-                   PApplet.ceil(x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03);
-                 farray[index++] =
-                   PApplet.ceil(x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13);
-               } else {
-                 farray[index++] = x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03;
-                 farray[index++] = x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13;
-               }
-               farray[index++] = x*mm.m20 + y*mm.m21 + z*mm.m22 + mm.m23;
-               farray[index  ] = x*mm.m30 + y*mm.m31 + z*mm.m32 + mm.m33;
-             } else {
-               farray[index++] = x;
-               farray[index++] = y;
-               farray[index++] = z;
-               farray[index  ] = 1;
-             }
-           } else if (attrib.isNormal()) {
-             float[] farray = fpolyAttribs.get(name);
-             float x = (float)d[pos + 0];
-             float y = (float)d[pos + 1];
-             float z = (float)d[pos + 2];
-             if (renderMode == IMMEDIATE && pg.flushMode == FLUSH_WHEN_FULL) {
-               farray[index++] = x*nm.m00 + y*nm.m10 + z*nm.m20;
-               farray[index++] = x*nm.m01 + y*nm.m11 + z*nm.m21;
-               farray[index  ] = x*nm.m02 + y*nm.m12 + z*nm.m22;
-             } else {
-               farray[index++] = x;
-               farray[index++] = y;
-               farray[index  ] = z;
-             }
-             pos += 3;
-           } else {
-             if (attrib.isFloat()) {
-               float[] farray = fpolyAttribs.get(name);
-               for (int n = 0; n < attrib.size; n++) {
-                 farray[index++] = (float)d[pos++];
-               }
-             } else if (attrib.isInt()) {
-               int[] iarray = ipolyAttribs.get(name);
-               for (int n = 0; n < attrib.size; n++) {
-                 iarray[index++] = (int)d[pos++];
-               }
-             } else if (attrib.isBool()) {
-               byte[] barray = bpolyAttribs.get(name);
-               for (int n = 0; n < attrib.size; n++) {
-                 barray[index++] = (byte)d[pos++];
-               }
-             }
-             pos += attrib.size;
-           }
-         }
-       }
+      if (25 < d.length) {
+        // Add the values of the custom attributes...
+        PMatrix3D mm = pg.modelview;
+        PMatrix3D nm = pg.modelviewInv;
+        int tessIdx = polyVertexCount - 1;
+        int index;
+        int pos = 25;
+        for (int i = 0; i < polyAttribs.size(); i++) {
+          VertexAttribute attrib = polyAttribs.get(i);
+          String name = attrib.name;
+          index = attrib.tessSize * tessIdx;
+          if (attrib.isColor()) {
+            // Reconstruct color from ARGB components
+            int color =
+                    (int)d[pos + 0] << 24 | (int)d[pos + 1] << 16 | (int)d[pos + 2] << 8 | (int)d[pos + 3];
+            int[] tessValues = ipolyAttribs.get(name);
+            tessValues[index] = color;
+            pos += 4;
+          }  else if (attrib.isPosition()) {
+            float[] farray = fpolyAttribs.get(name);
+            float x = (float)d[pos++];
+            float y = (float)d[pos++];
+            float z = (float)d[pos++];
+            if (renderMode == IMMEDIATE && pg.flushMode == FLUSH_WHEN_FULL) {
+              if (clampXY) {
+                // ceil emulates the behavior of JAVA2D
+                farray[index++] =
+                        PApplet.ceil(x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03);
+                farray[index++] =
+                        PApplet.ceil(x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13);
+              } else {
+                farray[index++] = x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03;
+                farray[index++] = x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13;
+              }
+              farray[index++] = x*mm.m20 + y*mm.m21 + z*mm.m22 + mm.m23;
+              farray[index  ] = x*mm.m30 + y*mm.m31 + z*mm.m32 + mm.m33;
+            } else {
+              farray[index++] = x;
+              farray[index++] = y;
+              farray[index++] = z;
+              farray[index  ] = 1;
+            }
+          } else if (attrib.isNormal()) {
+            float[] farray = fpolyAttribs.get(name);
+            float x = (float)d[pos + 0];
+            float y = (float)d[pos + 1];
+            float z = (float)d[pos + 2];
+            if (renderMode == IMMEDIATE && pg.flushMode == FLUSH_WHEN_FULL) {
+              farray[index++] = x*nm.m00 + y*nm.m10 + z*nm.m20;
+              farray[index++] = x*nm.m01 + y*nm.m11 + z*nm.m21;
+              farray[index  ] = x*nm.m02 + y*nm.m12 + z*nm.m22;
+            } else {
+              farray[index++] = x;
+              farray[index++] = y;
+              farray[index  ] = z;
+            }
+            pos += 3;
+          } else {
+            if (attrib.isFloat()) {
+              float[] farray = fpolyAttribs.get(name);
+              for (int n = 0; n < attrib.size; n++) {
+                farray[index++] = (float)d[pos++];
+              }
+            } else if (attrib.isInt()) {
+              int[] iarray = ipolyAttribs.get(name);
+              for (int n = 0; n < attrib.size; n++) {
+                iarray[index++] = (int)d[pos++];
+              }
+            } else if (attrib.isBool()) {
+              byte[] barray = bpolyAttribs.get(name);
+              for (int n = 0; n < attrib.size; n++) {
+                barray[index++] = (byte)d[pos++];
+              }
+            }
+            pos += attrib.size;
+          }
+        }
+      }
     }
 
     void addPolyVertex(float x, float y, float z,
@@ -10283,19 +10281,19 @@ public class PGraphicsOpenGL extends PGraphics {
       polyVertexCheck();
       int tessIdx = polyVertexCount - 1;
       setPolyVertex(tessIdx, x, y, z,
-                    rgba,
-                    nx, ny, nz,
-                    u, v,
-                    am, sp, em, shine, clampXY);
+              rgba,
+              nx, ny, nz,
+              u, v,
+              am, sp, em, shine, clampXY);
     }
 
     void setPolyVertex(int tessIdx, float x, float y, float z, int rgba,
                        boolean clampXY) {
       setPolyVertex(tessIdx, x, y, z,
-                    rgba,
-                    0, 0, 1,
-                    0, 0,
-                    0, 0, 0, 0, clampXY);
+              rgba,
+              0, 0, 1,
+              0, 0,
+              0, 0, 0, 0, clampXY);
     }
 
     void setPolyVertex(int tessIdx, float x, float y, float z,
@@ -10314,9 +10312,9 @@ public class PGraphicsOpenGL extends PGraphics {
         if (clampXY) {
           // ceil emulates the behavior of JAVA2D
           polyVertices[index++] =
-            PApplet.ceil(x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03);
+                  PApplet.ceil(x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03);
           polyVertices[index++] =
-            PApplet.ceil(x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13);
+                  PApplet.ceil(x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13);
         } else {
           polyVertices[index++] = x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03;
           polyVertices[index++] = x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13;
@@ -10407,9 +10405,9 @@ public class PGraphicsOpenGL extends PGraphics {
         if (clampXY) {
           // ceil emulates the behavior of JAVA2D
           polyVertices[index++] =
-            PApplet.ceil(x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03);
+                  PApplet.ceil(x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03);
           polyVertices[index++] =
-            PApplet.ceil(x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13);
+                  PApplet.ceil(x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13);
         } else {
           polyVertices[index++] = x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03;
           polyVertices[index++] = x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13;
@@ -10438,9 +10436,9 @@ public class PGraphicsOpenGL extends PGraphics {
             if (clampXY) {
               // ceil emulates the behavior of JAVA2D
               tessValues[index++] =
-                PApplet.ceil(x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03);
+                      PApplet.ceil(x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03);
               tessValues[index++] =
-                PApplet.ceil(x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13);
+                      PApplet.ceil(x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13);
             } else {
               tessValues[index++] = x*mm.m00 + y*mm.m01 + z*mm.m02 + mm.m03;
               tessValues[index++] = x*mm.m10 + y*mm.m11 + z*mm.m12 + mm.m13;
@@ -10521,7 +10519,7 @@ public class PGraphicsOpenGL extends PGraphics {
         int inIdx = i0 + i;
         int tessIdx = firstPolyVertex + i;
         PApplet.arrayCopy(in.vertices, 3 * inIdx,
-                          polyVertices, 4 * tessIdx, 3);
+                polyVertices, 4 * tessIdx, 3);
         polyVertices[4 * tessIdx + 3] = 1;
 
         for (String name: polyAttribs.keySet()) {
@@ -10530,19 +10528,19 @@ public class PGraphicsOpenGL extends PGraphics {
           float[] inValues = in.fattribs.get(name);
           float[] tessValues = fpolyAttribs.get(name);
           PApplet.arrayCopy(inValues, 3 * inIdx,
-                            tessValues, 4 * tessIdx, 3);
+                  tessValues, 4 * tessIdx, 3);
           tessValues[4 * tessIdx + 3] = 1;
         }
       }
       PApplet.arrayCopy(in.normals, 3 * i0,
-                        polyNormals, 3 * firstPolyVertex, 3 * nvert);
+              polyNormals, 3 * firstPolyVertex, 3 * nvert);
       for (String name: polyAttribs.keySet()) {
         VertexAttribute attrib = polyAttribs.get(name);
         if (!attrib.isNormal()) continue;
         float[] inValues = in.fattribs.get(name);
         float[] tessValues = fpolyAttribs.get(name);
         PApplet.arrayCopy(inValues, 3 * i0,
-                          tessValues, 3 * firstPolyVertex, 3 * nvert);
+                tessValues, 3 * firstPolyVertex, 3 * nvert);
       }
     }
 
@@ -10598,17 +10596,17 @@ public class PGraphicsOpenGL extends PGraphics {
     // Copy many attributes using arrayCopy()
     private void copyManyAttribs(InGeometry in, int i0, int index, int nvert) {
       PApplet.arrayCopy(in.colors, i0,
-                        polyColors, firstPolyVertex, nvert);
+              polyColors, firstPolyVertex, nvert);
       PApplet.arrayCopy(in.texcoords, 2 * i0,
-                        polyTexCoords, 2 * firstPolyVertex, 2 * nvert);
+              polyTexCoords, 2 * firstPolyVertex, 2 * nvert);
       PApplet.arrayCopy(in.ambient, i0,
-                        polyAmbient, firstPolyVertex, nvert);
+              polyAmbient, firstPolyVertex, nvert);
       PApplet.arrayCopy(in.specular, i0,
-                        polySpecular, firstPolyVertex, nvert);
+              polySpecular, firstPolyVertex, nvert);
       PApplet.arrayCopy(in.emissive, i0,
-                        polyEmissive, firstPolyVertex, nvert);
+              polyEmissive, firstPolyVertex, nvert);
       PApplet.arrayCopy(in.shininess, i0,
-                        polyShininess, firstPolyVertex, nvert);
+              polyShininess, firstPolyVertex, nvert);
 
       for (String name: polyAttribs.keySet()) {
         VertexAttribute attrib = polyAttribs.get(name);
@@ -10626,8 +10624,8 @@ public class PGraphicsOpenGL extends PGraphics {
           tessValues = bpolyAttribs.get(name);
         }
         PApplet.arrayCopy(inValues, attrib.size * i0,
-                          tessValues, attrib.tessSize * firstPolyVertex,
-                          attrib.size * nvert);
+                tessValues, attrib.tessSize * firstPolyVertex,
+                attrib.size * nvert);
       }
     }
 
@@ -11024,9 +11022,9 @@ public class PGraphicsOpenGL extends PGraphics {
         // The number of triangles of each fan depends on the
         // stroke weight of the point.
         int nPtVert =
-          PApplet.min(MAX_POINT_ACCURACY, PApplet.max(MIN_POINT_ACCURACY,
-                      (int) (TWO_PI * strokeWeight /
-                      POINT_ACCURACY_FACTOR))) + 1;
+                PApplet.min(MAX_POINT_ACCURACY, PApplet.max(MIN_POINT_ACCURACY,
+                        (int) (TWO_PI * strokeWeight /
+                                POINT_ACCURACY_FACTOR))) + 1;
         if (PGL.MAX_VERTEX_INDEX1 <= nPtVert) {
           throw new RuntimeException("Error in point tessellation.");
         }
@@ -11080,9 +11078,9 @@ public class PGraphicsOpenGL extends PGraphics {
         float inc = (float) SINCOS_LENGTH / perim;
         for (int k = 0; k < perim; k++) {
           tess.pointOffsets[2 * attribIdx + 0] =
-            0.5f * cosLUT[(int) val] * transformScale() * strokeWeight;
+                  0.5f * cosLUT[(int) val] * transformScale() * strokeWeight;
           tess.pointOffsets[2 * attribIdx + 1] =
-            0.5f * sinLUT[(int) val] * transformScale() * strokeWeight;
+                  0.5f * sinLUT[(int) val] * transformScale() * strokeWeight;
           val = (val + inc) % SINCOS_LENGTH;
           attribIdx++;
         }
@@ -11132,9 +11130,9 @@ public class PGraphicsOpenGL extends PGraphics {
         vertIdx++;
         for (int k = 0; k < perim; k++) {
           tess.setPolyVertex(vertIdx,
-                             x0 + 0.5f * cosLUT[(int) val] * strokeWeight,
-                             y0 + 0.5f * sinLUT[(int) val] * strokeWeight,
-                             0, rgba, false);
+                  x0 + 0.5f * cosLUT[(int) val] * strokeWeight,
+                  y0 + 0.5f * sinLUT[(int) val] * strokeWeight,
+                  0, rgba, false);
           vertIdx++;
           val = (val + inc) % SINCOS_LENGTH;
         }
@@ -11210,9 +11208,9 @@ public class PGraphicsOpenGL extends PGraphics {
         attribIdx++;
         for (int k = 0; k < 4; k++) {
           tess.pointOffsets[2 * attribIdx + 0] =
-            0.5f * QUAD_POINT_SIGNS[k][0] * transformScale() * strokeWeight;
+                  0.5f * QUAD_POINT_SIGNS[k][0] * transformScale() * strokeWeight;
           tess.pointOffsets[2 * attribIdx + 1] =
-            0.5f * QUAD_POINT_SIGNS[k][1] * transformScale() * strokeWeight;
+                  0.5f * QUAD_POINT_SIGNS[k][1] * transformScale() * strokeWeight;
           attribIdx++;
         }
 
@@ -11260,9 +11258,9 @@ public class PGraphicsOpenGL extends PGraphics {
         vertIdx++;
         for (int k = 0; k < nvert - 1; k++) {
           tess.setPolyVertex(vertIdx,
-                             x0 + 0.5f * QUAD_POINT_SIGNS[k][0] * strokeWeight,
-                             y0 + 0.5f * QUAD_POINT_SIGNS[k][1] * strokeWeight,
-                             0, rgba, clamp);
+                  x0 + 0.5f * QUAD_POINT_SIGNS[k][0] * strokeWeight,
+                  y0 + 0.5f * QUAD_POINT_SIGNS[k][1] * strokeWeight,
+                  0, rgba, clamp);
           vertIdx++;
         }
 
@@ -11283,7 +11281,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
     boolean clamp2D() {
       return is2D && tess.renderMode == IMMEDIATE &&
-             zero(pg.modelview.m01) && zero(pg.modelview.m10);
+              zero(pg.modelview.m01) && zero(pg.modelview.m10);
     }
 
     boolean clampSquarePoints2D() {
@@ -11324,7 +11322,7 @@ public class PGraphicsOpenGL extends PGraphics {
       tess.lineVertexCheck(nvert);
       tess.lineIndexCheck(nind);
       int index = in.renderMode == RETAINED ? tess.lineIndexCache.addNew() :
-                                              tess.lineIndexCache.getLast();
+              tess.lineIndexCache.getLast();
       firstLineIndexCache = index;
       int[] tmp = {0, 0};
       tess.lineIndexCache.setCounter(tmp);
@@ -11348,7 +11346,7 @@ public class PGraphicsOpenGL extends PGraphics {
         tess.polyVertexCheck(nvert);
         tess.polyIndexCheck(nind);
         int index = in.renderMode == RETAINED ? tess.polyIndexCache.addNew() :
-                                                tess.polyIndexCache.getLast();
+                tess.polyIndexCache.getLast();
         firstLineIndexCache = index;
         if (firstPolyIndexCache == -1) firstPolyIndexCache = index; // If the geometry has no fill, needs the first poly index.
         boolean clamp = clampLines2D(lineCount);
@@ -11364,9 +11362,9 @@ public class PGraphicsOpenGL extends PGraphics {
           int i0 = 2 * ln + 0;
           int i1 = 2 * ln + 1;
           path.moveTo(in.vertices[3 * i0 + 0], in.vertices[3 * i0 + 1],
-                      in.strokeColors[i0]);
+                  in.strokeColors[i0]);
           path.lineTo(in.vertices[3 * i1 + 0], in.vertices[3 * i1 + 1],
-                      in.strokeColors[i1]);
+                  in.strokeColors[i1]);
         }
         tessellateLinePath(path);
       }
@@ -11413,7 +11411,7 @@ public class PGraphicsOpenGL extends PGraphics {
       tess.lineVertexCheck(nvert);
       tess.lineIndexCheck(nind);
       int index = in.renderMode == RETAINED ? tess.lineIndexCache.addNew() :
-                                              tess.lineIndexCache.getLast();
+              tess.lineIndexCache.getLast();
       firstLineIndexCache = index;
       int i0 = 0;
       short[] lastInd = {-1, -1};
@@ -11443,7 +11441,7 @@ public class PGraphicsOpenGL extends PGraphics {
         tess.polyVertexCheck(nvert);
         tess.polyIndexCheck(nind);
         int index = in.renderMode == RETAINED ? tess.polyIndexCache.addNew() :
-                                                tess.polyIndexCache.getLast();
+                tess.polyIndexCache.getLast();
         firstLineIndexCache = index;
         if (firstPolyIndexCache == -1) firstPolyIndexCache = index; // If the geometry has no fill, needs the first poly index.
         int i0 = 0;
@@ -11460,7 +11458,7 @@ public class PGraphicsOpenGL extends PGraphics {
         for (int ln = 0; ln < lineCount; ln++) {
           int i1 = ln + 1;
           path.lineTo(in.vertices[3 * i1 + 0], in.vertices[3 * i1 + 1],
-                      in.strokeColors[i1]);
+                  in.strokeColors[i1]);
         }
         tessellateLinePath(path);
       }
@@ -11505,7 +11503,7 @@ public class PGraphicsOpenGL extends PGraphics {
       tess.lineVertexCheck(nvert);
       tess.lineIndexCheck(nind);
       int index = in.renderMode == RETAINED ? tess.lineIndexCache.addNew() :
-                                              tess.lineIndexCache.getLast();
+              tess.lineIndexCache.getLast();
       firstLineIndexCache = index;
       int i0 = 0;
       int i1 = -1;
@@ -11540,7 +11538,7 @@ public class PGraphicsOpenGL extends PGraphics {
         tess.polyVertexCheck(nvert);
         tess.polyIndexCheck(nind);
         int index = in.renderMode == RETAINED ? tess.polyIndexCache.addNew() :
-                                                tess.polyIndexCache.getLast();
+                tess.polyIndexCache.getLast();
         firstLineIndexCache = index;
         if (firstPolyIndexCache == -1) firstPolyIndexCache = index; // If the geometry has no fill, needs the first poly index.
         int i0 = 0;
@@ -11558,7 +11556,7 @@ public class PGraphicsOpenGL extends PGraphics {
         for (int ln = 0; ln < lineCount - 1; ln++) {
           int i1 = ln + 1;
           path.lineTo(in.vertices[3 * i1 + 0], in.vertices[3 * i1 + 1],
-                      in.strokeColors[i1]);
+                  in.strokeColors[i1]);
         }
         path.closePath();
         tessellateLinePath(path);
@@ -11602,7 +11600,7 @@ public class PGraphicsOpenGL extends PGraphics {
       tess.lineVertexCheck(nInVert);
       tess.lineIndexCheck(nInInd);
       int index = in.renderMode == RETAINED ? tess.lineIndexCache.addNew() :
-                                              tess.lineIndexCache.getLast();
+              tess.lineIndexCache.getLast();
       firstLineIndexCache = index;
       int fi0 = 0;
       int fi1 = 0;
@@ -11655,7 +11653,7 @@ public class PGraphicsOpenGL extends PGraphics {
         tess.polyVertexCheck(nInVert);
         tess.polyIndexCheck(nInInd);
         int index = in.renderMode == RETAINED ? tess.polyIndexCache.addNew() :
-                                                tess.polyIndexCache.getLast();
+                tess.polyIndexCache.getLast();
         firstLineIndexCache = index;
         if (firstPolyIndexCache == -1) firstPolyIndexCache = index; // If the geometry has no fill, needs the first poly index.
         boolean clamp = clampEdges2D();
@@ -11674,33 +11672,33 @@ public class PGraphicsOpenGL extends PGraphics {
           int i0 = edge[0];
           int i1 = edge[1];
           switch (edge[2]) {
-          case EDGE_MIDDLE:
-            path.lineTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
-                        strokeColors[i1]);
-            break;
-          case EDGE_START:
-            path.moveTo(strokeVertices[3 * i0 + 0], strokeVertices[3 * i0 + 1],
-                        strokeColors[i0]);
-            path.lineTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
-                        strokeColors[i1]);
-            break;
-          case EDGE_STOP:
-            path.lineTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
-                        strokeColors[i1]);
-            path.moveTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
-                        strokeColors[i1]);
-            break;
-          case EDGE_SINGLE:
-            path.moveTo(strokeVertices[3 * i0 + 0], strokeVertices[3 * i0 + 1],
-                        strokeColors[i0]);
-            path.lineTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
-                        strokeColors[i1]);
-            path.moveTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
-                        strokeColors[i1]);
-            break;
-          case EDGE_CLOSE:
-            path.closePath();
-            break;
+            case EDGE_MIDDLE:
+              path.lineTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
+                      strokeColors[i1]);
+              break;
+            case EDGE_START:
+              path.moveTo(strokeVertices[3 * i0 + 0], strokeVertices[3 * i0 + 1],
+                      strokeColors[i0]);
+              path.lineTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
+                      strokeColors[i1]);
+              break;
+            case EDGE_STOP:
+              path.lineTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
+                      strokeColors[i1]);
+              path.moveTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
+                      strokeColors[i1]);
+              break;
+            case EDGE_SINGLE:
+              path.moveTo(strokeVertices[3 * i0 + 0], strokeVertices[3 * i0 + 1],
+                      strokeColors[i0]);
+              path.lineTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
+                      strokeColors[i1]);
+              path.moveTo(strokeVertices[3 * i1 + 0], strokeVertices[3 * i1 + 1],
+                      strokeColors[i1]);
+              break;
+            case EDGE_CLOSE:
+              path.closePath();
+              break;
           }
         }
         tessellateLinePath(path);
@@ -11914,11 +11912,11 @@ public class PGraphicsOpenGL extends PGraphics {
       float normdy = normy * weight/2;
 
       tess.setPolyVertex(vidx++, x0 + normdx - dirdx, y0 + normdy - dirdy,
-                         0, color, clamp);
+              0, color, clamp);
       tess.polyIndices[iidx++] = (short) (count + 0);
 
       tess.setPolyVertex(vidx++, x0 - normdx - dirdx, y0 - normdy - dirdy,
-                         0, color, clamp);
+              0, color, clamp);
       tess.polyIndices[iidx++] = (short) (count + 1);
 
       if (clamp) {
@@ -11942,7 +11940,7 @@ public class PGraphicsOpenGL extends PGraphics {
       }
 
       tess.setPolyVertex(vidx++, x1 - normdx + dirdx, y1 - normdy + dirdy,
-                         0, color, clamp);
+              0, color, clamp);
       tess.polyIndices[iidx++] = (short) (count + 2);
 
       // Starting a new triangle re-using prev vertices.
@@ -11950,7 +11948,7 @@ public class PGraphicsOpenGL extends PGraphics {
       tess.polyIndices[iidx++] = (short) (count + 0);
 
       tess.setPolyVertex(vidx++, x1 + normdx + dirdx, y1 + normdy + dirdy,
-                         0, color, clamp);
+              0, color, clamp);
       tess.polyIndices[iidx++] = (short) (count + 3);
 
       if (clamp) {
@@ -11997,7 +11995,7 @@ public class PGraphicsOpenGL extends PGraphics {
       // The stroke weight is scaled so it corresponds to the current
       // "zoom level" being applied on the geometry due to scaling:
       return tess.renderMode == IMMEDIATE &&
-             transformScale() * strokeWeight < PGL.MIN_CAPS_JOINS_WEIGHT;
+              transformScale() * strokeWeight < PGL.MIN_CAPS_JOINS_WEIGHT;
     }
 
     float transformScale() {
@@ -12007,12 +12005,12 @@ public class PGraphicsOpenGL extends PGraphics {
 
     boolean segmentIsAxisAligned(int i0, int i1) {
       return zero(in.vertices[3 * i0 + 0] - in.vertices[3 * i1 + 0]) ||
-             zero(in.vertices[3 * i0 + 1] - in.vertices[3 * i1 + 1]);
+              zero(in.vertices[3 * i0 + 1] - in.vertices[3 * i1 + 1]);
     }
 
     boolean segmentIsAxisAligned(float[] vertices, int i0, int i1) {
       return zero(vertices[3 * i0 + 0] - vertices[3 * i1 + 0]) ||
-             zero(vertices[3 * i0 + 1] - vertices[3 * i1 + 1]);
+              zero(vertices[3 * i0 + 1] - vertices[3 * i1 + 1]);
     }
 
     // -----------------------------------------------------------------
@@ -12210,8 +12208,8 @@ public class PGraphicsOpenGL extends PGraphics {
           int i2 = 4 * qd + 2;
           int i3 = 4 * qd + 3;
           res = segmentIsAxisAligned(i0, i1) &&
-                segmentIsAxisAligned(i1, i2) &&
-                segmentIsAxisAligned(i2, i3);
+                  segmentIsAxisAligned(i1, i2) &&
+                  segmentIsAxisAligned(i2, i3);
           if (!res) break;
         }
       }
@@ -12255,8 +12253,8 @@ public class PGraphicsOpenGL extends PGraphics {
           int i2 = 2 * qd + 1;
           int i3 = 2 * qd;
           res = segmentIsAxisAligned(i0, i1) &&
-                segmentIsAxisAligned(i1, i2) &&
-                segmentIsAxisAligned(i2, i3);
+                  segmentIsAxisAligned(i1, i2) &&
+                  segmentIsAxisAligned(i2, i3);
           if (!res) break;
         }
       }
@@ -12289,7 +12287,7 @@ public class PGraphicsOpenGL extends PGraphics {
 
       int inMaxVertRef = inMaxVert0; // Reference vertex where last break split occurred
       int inMaxVertRel = -1;         // Position of vertices from last range relative to
-                                     // split position.
+      // split position.
       dupCount = 0;
 
       IndexCache cache = tess.polyIndexCache;
@@ -12339,8 +12337,8 @@ public class PGraphicsOpenGL extends PGraphics {
         inMaxVertRel = PApplet.max(inMaxVertRel, PApplet.max(ri0, ri1, ri2));
 
         if ((PGL.MAX_VERTEX_INDEX1 - 3 <= inMaxVertRel + dupCount &&
-             inMaxVertRel + dupCount < PGL.MAX_VERTEX_INDEX1) ||
-            (tr == trCount - 1)) {
+                inMaxVertRel + dupCount < PGL.MAX_VERTEX_INDEX1) ||
+                (tr == trCount - 1)) {
           // The vertex indices of the current group are about to
           // surpass the MAX_VERTEX_INDEX limit, or we are at the last triangle
           // so we need to wrap-up things anyways.
@@ -12353,7 +12351,7 @@ public class PGraphicsOpenGL extends PGraphics {
               int ri = tess.polyIndices[offset + i];
               if (ri < 0) {
                 tess.polyIndices[offset + i] =
-                  (short) (inMaxVertRel + 1 + dupIndexPos(ri));
+                        (short) (inMaxVertRel + 1 + dupIndexPos(ri));
               }
             }
 
@@ -12481,7 +12479,7 @@ public class PGraphicsOpenGL extends PGraphics {
       if (texCache != null) {
         if (prevTexImage != newTexImage || texCache.size == 0) {
           texCache.addTexture(newTexImage, firstTexIndex, firstTexCache,
-                              lastIndex, lastCache);
+                  lastIndex, lastCache);
         } else {
           texCache.setLastIndex(lastIndex, lastCache);
         }
@@ -12717,9 +12715,9 @@ public class PGraphicsOpenGL extends PGraphics {
         float[] v3 = pg.curveVertices[pg.curveVertexCount - 2];
         float[] v4 = pg.curveVertices[pg.curveVertexCount - 1];
         addCurveVertexSegment(i, v1[X], v1[Y], v1[Z],
-                                 v2[X], v2[Y], v2[Z],
-                                 v3[X], v3[Y], v3[Z],
-                                 v4[X], v4[Y], v4[Z]);
+                v2[X], v2[Y], v2[Z],
+                v3[X], v3[Y], v3[Z],
+                v4[X], v4[Y], v4[Z]);
       }
     }
 
@@ -12737,9 +12735,9 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     void addCurveVertexSegment(int i, float x1, float y1, float z1,
-                                      float x2, float y2, float z2,
-                                      float x3, float y3, float z3,
-                                      float x4, float y4, float z4) {
+                               float x2, float y2, float z2,
+                               float x3, float y3, float z3,
+                               float x4, float y4, float z4) {
       int strokeColor = 0;
       float strokeWeight = 0;
       if (stroke) {
@@ -12937,15 +12935,15 @@ public class PGraphicsOpenGL extends PGraphics {
       callback.init(in.renderMode == RETAINED, true, false, clamp);
 
       int cap = strokeCap == ROUND ? LinePath.CAP_ROUND :
-                strokeCap == PROJECT ? LinePath.CAP_SQUARE :
-                LinePath.CAP_BUTT;
+              strokeCap == PROJECT ? LinePath.CAP_SQUARE :
+                      LinePath.CAP_BUTT;
       int join = strokeJoin == ROUND ? LinePath.JOIN_ROUND :
-                 strokeJoin == BEVEL ? LinePath.JOIN_BEVEL :
-                 LinePath.JOIN_MITER;
+              strokeJoin == BEVEL ? LinePath.JOIN_BEVEL :
+                      LinePath.JOIN_MITER;
 
       // Make the outline of the stroke from the path
       LinePath strokedPath = LinePath.createStrokedPath(path, strokeWeight,
-                                                        cap, join);
+              cap, join);
 
       gluTess.beginPolygon();
 
@@ -12955,36 +12953,36 @@ public class PGraphicsOpenGL extends PGraphics {
       LinePath.PathIterator iter = strokedPath.getPathIterator();
       int rule = iter.getWindingRule();
       switch(rule) {
-      case LinePath.WIND_EVEN_ODD:
-        gluTess.setWindingRule(PGL.TESS_WINDING_ODD);
-        break;
-      case LinePath.WIND_NON_ZERO:
-        gluTess.setWindingRule(PGL.TESS_WINDING_NONZERO);
-        break;
+        case LinePath.WIND_EVEN_ODD:
+          gluTess.setWindingRule(PGL.TESS_WINDING_ODD);
+          break;
+        case LinePath.WIND_NON_ZERO:
+          gluTess.setWindingRule(PGL.TESS_WINDING_NONZERO);
+          break;
       }
 
       while (!iter.isDone()) {
         switch (iter.currentSegment(coords)) {
 
-        case LinePath.SEG_MOVETO:
-          gluTess.beginContour();
+          case LinePath.SEG_MOVETO:
+            gluTess.beginContour();
 
-          // $FALL-THROUGH$
-        case LinePath.SEG_LINETO:
-          // Vertex data includes coordinates, colors, normals, texture
-          // coordinates, and material properties.
-          vertex = new double[] { coords[0], coords[1], 0,
-                                  coords[2], coords[3], coords[4], coords[5],
-                                  0, 0, 1,
-                                  0, 0,
-                                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            // $FALL-THROUGH$
+          case LinePath.SEG_LINETO:
+            // Vertex data includes coordinates, colors, normals, texture
+            // coordinates, and material properties.
+            vertex = new double[] { coords[0], coords[1], 0,
+                    coords[2], coords[3], coords[4], coords[5],
+                    0, 0, 1,
+                    0, 0,
+                    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-          gluTess.addVertex(vertex);
+            gluTess.addVertex(vertex);
 
-          break;
-        case LinePath.SEG_CLOSE:
-          gluTess.endContour();
-          break;
+            break;
+          case LinePath.SEG_CLOSE:
+            gluTess.endContour();
+            break;
         }
         iter.next();
       }
@@ -12993,8 +12991,8 @@ public class PGraphicsOpenGL extends PGraphics {
 
     boolean clampLinePath() {
       return clamp2D() &&
-             strokeCap == PROJECT && strokeJoin == BEVEL &&
-             !subPixelStroke(strokeWeight);
+              strokeCap == PROJECT && strokeJoin == BEVEL &&
+              !subPixelStroke(strokeWeight);
     }
 
     /////////////////////////////////////////
@@ -13073,45 +13071,45 @@ public class PGraphicsOpenGL extends PGraphics {
 
         int indCount = 0;
         switch (primitive) {
-        case TRIANGLE_FAN:
-          indCount = 3 * (vertCount - 2);
-          for (int i = 1; i < vertCount - 1; i++) {
-            addIndex(0);
-            addIndex(i);
-            addIndex(i + 1);
-            if (calcNormals) calcTriNormal(0, i, i + 1);
-          }
-          break;
-        case TRIANGLE_STRIP:
-          indCount = 3 * (vertCount - 2);
-          for (int i = 1; i < vertCount - 1; i++) {
-            if (i % 2 == 0) {
-              addIndex(i + 1);
-              addIndex(i);
-              addIndex(i - 1);
-              if (calcNormals) calcTriNormal(i + 1, i, i - 1);
-            } else {
-              addIndex(i - 1);
+          case TRIANGLE_FAN:
+            indCount = 3 * (vertCount - 2);
+            for (int i = 1; i < vertCount - 1; i++) {
+              addIndex(0);
               addIndex(i);
               addIndex(i + 1);
-              if (calcNormals) calcTriNormal(i - 1, i, i + 1);
+              if (calcNormals) calcTriNormal(0, i, i + 1);
             }
-          }
-          break;
-        case TRIANGLES:
-          indCount = vertCount;
-          for (int i = 0; i < vertCount; i++) {
-            addIndex(i);
-          }
-          if (calcNormals) {
-            for (int tr = 0; tr < vertCount / 3; tr++) {
-              int i0 = 3 * tr + 0;
-              int i1 = 3 * tr + 1;
-              int i2 = 3 * tr + 2;
-              calcTriNormal(i0, i1, i2);
+            break;
+          case TRIANGLE_STRIP:
+            indCount = 3 * (vertCount - 2);
+            for (int i = 1; i < vertCount - 1; i++) {
+              if (i % 2 == 0) {
+                addIndex(i + 1);
+                addIndex(i);
+                addIndex(i - 1);
+                if (calcNormals) calcTriNormal(i + 1, i, i - 1);
+              } else {
+                addIndex(i - 1);
+                addIndex(i);
+                addIndex(i + 1);
+                if (calcNormals) calcTriNormal(i - 1, i, i + 1);
+              }
             }
-          }
-          break;
+            break;
+          case TRIANGLES:
+            indCount = vertCount;
+            for (int i = 0; i < vertCount; i++) {
+              addIndex(i);
+            }
+            if (calcNormals) {
+              for (int tr = 0; tr < vertCount / 3; tr++) {
+                int i0 = 3 * tr + 0;
+                int i1 = 3 * tr + 1;
+                int i2 = 3 * tr + 2;
+                calcTriNormal(i0, i1, i2);
+              }
+            }
+            break;
         }
 
         cache.incCounts(cacheIndex, indCount, vertCount);
@@ -13124,13 +13122,13 @@ public class PGraphicsOpenGL extends PGraphics {
       protected void addIndex(int tessIdx) {
         tess.polyIndexCheck();
         tess.polyIndices[tess.polyIndexCount - 1] =
-          (short) (vertFirst + tessIdx);
+                (short) (vertFirst + tessIdx);
       }
 
       protected void calcTriNormal(int tessIdx0, int tessIdx1, int tessIdx2) {
         tess.calcPolyNormal(vertFirst + vertOffset + tessIdx0,
-                            vertFirst + vertOffset + tessIdx1,
-                            vertFirst + vertOffset + tessIdx2);
+                vertFirst + vertOffset + tessIdx1,
+                vertFirst + vertOffset + tessIdx2);
       }
 
       public void vertex(Object data) {
@@ -13139,7 +13137,7 @@ public class PGraphicsOpenGL extends PGraphics {
           int l = d.length;
           if (l < 25) {
             throw new RuntimeException("TessCallback vertex() data is " +
-                                       "too small");
+                    "too small");
           }
 
           if (vertCount < PGL.MAX_VERTEX_INDEX1) {
@@ -13147,13 +13145,13 @@ public class PGraphicsOpenGL extends PGraphics {
             vertCount++;
           } else {
             throw new RuntimeException("The tessellator is generating too " +
-                                       "many vertices, reduce complexity of " +
-                                       "shape.");
+                    "many vertices, reduce complexity of " +
+                    "shape.");
           }
 
         } else {
           throw new RuntimeException("TessCallback vertex() data not " +
-                                     "understood");
+                  "understood");
         }
       }
 
@@ -13219,8 +13217,8 @@ public class PGraphicsOpenGL extends PGraphics {
 
       private void normalize(double[] v, int i) {
         double sum = v[i    ] * v[i    ] +
-                     v[i + 1] * v[i + 1] +
-                     v[i + 2] * v[i + 2];
+                v[i + 1] * v[i + 1] +
+                v[i + 2] * v[i + 2];
         double len = Math.sqrt(sum);
         if (0 < len) {
           v[i    ] /= len;
@@ -13321,11 +13319,11 @@ public class PGraphicsOpenGL extends PGraphics {
           int last = texCache.lastCache[i];
           for (int n = first; n <= last; n++) {
             int ioffset = n == first
-                ? texCache.firstIndex[i]
-                : indexCache.indexOffset[n];
+                    ? texCache.firstIndex[i]
+                    : indexCache.indexOffset[n];
             int icount = n == last
-                ? texCache.lastIndex[i] - ioffset + 1
-                : indexCache.indexOffset[n] + indexCache.indexCount[n] - ioffset;
+                    ? texCache.lastIndex[i] - ioffset + 1
+                    : indexCache.indexOffset[n] + indexCache.indexCount[n] - ioffset;
 
             for (int tr = ioffset / 3; tr < (ioffset + icount) / 3; tr++) {
               texMap[tr] = i;
@@ -13351,13 +13349,13 @@ public class PGraphicsOpenGL extends PGraphics {
           float w = polyVertices[4*i+W];
 
           float ox = projection.m00 * x + projection.m01 * y +
-              projection.m02 * z + projection.m03 * w;
+                  projection.m02 * z + projection.m03 * w;
           float oy = projection.m10 * x + projection.m11 * y +
-              projection.m12 * z + projection.m13 * w;
+                  projection.m12 * z + projection.m13 * w;
           float oz = projection.m20 * x + projection.m21 * y +
-              projection.m22 * z + projection.m23 * w;
+                  projection.m22 * z + projection.m23 * w;
           float ow = projection.m30 * x + projection.m31 * y +
-              projection.m32 * z + projection.m33 * w;
+                  projection.m32 * z + projection.m33 * w;
           if (nonZero(ow)) {
             ox /= ow;
             oy /= ow;
@@ -13419,13 +13417,13 @@ public class PGraphicsOpenGL extends PGraphics {
 
             // TEST 2 // XY overlap using square window
           } else if (maxXA <= minXBuffer[tti] || maxYA <= minYBuffer[tti] ||
-              minXA >= maxXBuffer[tti] || minYA >= maxYBuffer[tti]) {
+                  minXA >= maxXBuffer[tti] || minYA >= maxYBuffer[tti]) {
             testTid++; // pass, not overlapping in XY
 
             // TEST 3 // test on which side ACTIVE is relative to TEST
           } else {
             fetchTriCoords(triB, tti, vertexOffset, voffsetMap,
-                screenVertices, polyIndices);
+                    screenVertices, polyIndices);
             if (side(triB, triA, -1) > 0) {
               testTid++; // pass, ACTIVE is in halfspace behind current TEST
 
@@ -13501,7 +13499,7 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     static void fetchTriCoords(float[] tri, int ti, int[] vertexOffset,
-        int[] voffsetMap, float[] screenVertices, short[] polyIndices) {
+                               int[] voffsetMap, float[] screenVertices, short[] polyIndices) {
       int voffset = vertexOffset[voffsetMap[ti]];
       int i0 = 3 * (voffset + polyIndices[3*ti+0]);
       int i1 = 3 * (voffset + polyIndices[3*ti+1]);
@@ -13518,7 +13516,7 @@ public class PGraphicsOpenGL extends PGraphics {
     }
 
     static void sortByMinZ(int leftTid, int rightTid, int[] triangleIndices,
-        float[] minZBuffer) {
+                           float[] minZBuffer) {
 
       // swap pivot to the front
       swap(triangleIndices, leftTid, ((leftTid + rightTid) / 2));
@@ -13538,9 +13536,9 @@ public class PGraphicsOpenGL extends PGraphics {
       swap(triangleIndices, leftTid, k);
 
       if (leftTid  < k - 1) sortByMinZ(leftTid,  k - 1, triangleIndices,
-          minZBuffer);
+              minZBuffer);
       if (k + 1 < rightTid) sortByMinZ(k + 1, rightTid, triangleIndices,
-          minZBuffer);
+              minZBuffer);
     }
 
     // Math -----------------------------------------------
@@ -13549,9 +13547,9 @@ public class PGraphicsOpenGL extends PGraphics {
       float Dx, Dy, Dz, Dw;
       { // Get the equation of the plane
         float
-            ABx = tri1[X1] - tri1[X0], ACx = tri1[X2] - tri1[X0],
-            ABy = tri1[Y1] - tri1[Y0], ACy = tri1[Y2] - tri1[Y0],
-            ABz = tri1[Z1] - tri1[Z0], ACz = tri1[Z2] - tri1[Z0];
+                ABx = tri1[X1] - tri1[X0], ACx = tri1[X2] - tri1[X0],
+                ABy = tri1[Y1] - tri1[Y0], ACy = tri1[Y2] - tri1[Y0],
+                ABz = tri1[Z1] - tri1[Z0], ACz = tri1[Z2] - tri1[Z0];
 
         Dx = ABy*ACz - ABz*ACy; Dy = ABz*ACx - ABx*ACz; Dz = ABx*ACy - ABy*ACx;
 
@@ -13563,7 +13561,7 @@ public class PGraphicsOpenGL extends PGraphics {
       }
 
       float distTest = dot(Dx, Dy, Dz,
-          tri1[X0], tri1[Y0], tri1[Z0] + 100*tz) + Dw;
+              tri1[X0], tri1[Y0], tri1[Z0] + 100*tz) + Dw;
 
       float distA = dot(Dx, Dy, Dz, tri2[X0], tri2[Y0], tri2[Z0]) + Dw;
       float distB = dot(Dx, Dy, Dz, tri2[X1], tri2[Y1], tri2[Z1]) + Dw;
