@@ -107,8 +107,8 @@ public abstract class PGL {
   protected static int FLUSH_VERTEX_COUNT = MAX_VERTEX_INDEX1;
 
   /** Minimum/maximum dimensions of a texture used to hold font data. */
-  protected static int MIN_FONT_TEX_SIZE = 256;
-  protected static int MAX_FONT_TEX_SIZE = 1024;
+  protected static int MIN_FONT_TEX_SIZE = 2048;
+  protected static int MAX_FONT_TEX_SIZE = 2048;
 
   /** Minimum stroke weight needed to apply the full path stroking
    * algorithm that properly generates caps and joins.

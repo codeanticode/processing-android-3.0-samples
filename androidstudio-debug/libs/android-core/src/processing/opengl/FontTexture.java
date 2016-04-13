@@ -90,10 +90,12 @@ class FontTexture implements PConstants {
     lastTex = -1;
 
     int spow = PGL.nextPowerOfTwo(font.getSize());
-    minSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
-                          PApplet.max(PGL.MIN_FONT_TEX_SIZE, spow));
-    maxSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
-                          PApplet.max(PGL.MAX_FONT_TEX_SIZE, 2 * spow));
+//    minSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
+//                          PApplet.max(PGL.MIN_FONT_TEX_SIZE, spow));
+//    maxSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
+//                          PApplet.max(PGL.MAX_FONT_TEX_SIZE, 2 * spow));
+    minSize = PGL.MIN_FONT_TEX_SIZE;
+    maxSize = PGL.MAX_FONT_TEX_SIZE;
 
     if (maxSize < spow) {
       PGraphics.showWarning("The font size is too large to be properly " +
