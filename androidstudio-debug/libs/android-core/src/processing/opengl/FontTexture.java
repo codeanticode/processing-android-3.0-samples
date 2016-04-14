@@ -89,13 +89,13 @@ class FontTexture implements PConstants {
 
     int spow = PGL.nextPowerOfTwo(font.getSize());
     minSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
-            PApplet.max(PGL.MIN_FONT_TEX_SIZE, spow));
+                          PApplet.max(PGL.MIN_FONT_TEX_SIZE, spow));
     maxSize = PApplet.min(PGraphicsOpenGL.maxTextureSize,
-            PApplet.max(PGL.MAX_FONT_TEX_SIZE, 2 * spow));
+                          PApplet.max(PGL.MAX_FONT_TEX_SIZE, 2 * spow));
 
     if (maxSize < spow) {
       PGraphics.showWarning("The font size is too large to be properly " +
-              "displayed with OpenGL");
+                            "displayed with OpenGL");
     }
 
     addTexture(pg);
@@ -130,14 +130,14 @@ class FontTexture implements PConstants {
       // Bilinear sampling ensures that the texture doesn't look pixelated
       // either when it is magnified or minified...
       tex = new Texture(pg, w, h,
-              new Texture.Parameters(ARGB, Texture.BILINEAR, false));
+                        new Texture.Parameters(ARGB, Texture.BILINEAR, false));
     } else {
       // ...however, the effect of bilinear sampling is to add some blurriness
       // to the text in its original size. In 2D, we assume that text will be
       // shown at its original size, so linear sampling is chosen instead (which
       // only affects minimized text).
       tex = new Texture(pg, w, h,
-              new Texture.Parameters(ARGB, Texture.LINEAR, false));
+                        new Texture.Parameters(ARGB, Texture.LINEAR, false));
     }
 
     if (textures == null) {
@@ -149,15 +149,9 @@ class FontTexture implements PConstants {
     } else if (resize) {
       // Replacing old smaller texture with larger one.
       // But first we must copy the contents of the older
-      // texture into the new one. Setting blend mode to
-      // REPLACE to preserve color of transparent pixels.
+      // texture into the new one.
       Texture tex0 = textures[lastTex];
-
-      tex.pg.pushStyle();
-      tex.pg.blendMode(REPLACE);
       tex.put(tex0);
-      tex.pg.popStyle();
-
       textures[lastTex] = tex;
 
       pg.setCache(images[lastTex], tex);
@@ -379,7 +373,7 @@ class FontTexture implements PConstants {
 
     void updateTex() {
       textures[texIndex].setNative(pixels, crop[0] - 1, crop[1] + crop[3] - 1,
-              crop[2] + 2, -crop[3] + 2);
+                                           crop[2] + 2, -crop[3] + 2);
     }
   }
 }
